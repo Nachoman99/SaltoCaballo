@@ -16,6 +16,9 @@ public class SaltoCaballo {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Tablero tablero = new Tablero();
+        tablero.posiblesMoviemientos();
+        tablero.posiblesMovimientosEspecifico(2, 2);
     }
     
 }

@@ -13,9 +13,10 @@ import java.util.ArrayList;
  */
 public class Celda {
     private String poscicion;
-    private ArrayList<Coordenada> posiblesMovimientos;
+    private ArrayList<Coordenada> posiblesMovimientos ;
 
     public Celda() {
+        posiblesMovimientos = new ArrayList<>();
     }
     
     public Celda(String poscicion, ArrayList<Coordenada> posiblesMovimientos) {
@@ -44,11 +45,11 @@ public class Celda {
         return "Celda{" + "poscicion=" + poscicion + ", posiblesMovimientos=" + posiblesMovimientos + '}';
     }
     
-    public void añadir(Coordenada coordenada){
+    public void añadirPosiblesMovimientos(Coordenada coordenada){
         posiblesMovimientos.add(coordenada);
     }
     
-    public void eliminar(Coordenada coordenada){
+    public void eliminarPosiblesMovimientos(Coordenada coordenada){
         posiblesMovimientos.remove(coordenada);
     }
 }
