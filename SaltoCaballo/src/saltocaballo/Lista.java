@@ -222,4 +222,12 @@ public class Lista {
         }
         return result;
     }
+    
+    public String imprimirReves(){
+        String str = "";
+        for(Nodo temp = ultimo; temp != null; temp = temp.getAnt()){
+            str = str + temp.getDato() + " ";
+        }
+        return str;
+    }
 }
