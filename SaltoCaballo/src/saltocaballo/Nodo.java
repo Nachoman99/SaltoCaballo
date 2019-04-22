@@ -10,21 +10,21 @@ package saltocaballo;
  * @author Kevin Trejos
  */
 public class Nodo {
-    private int dato;
+    private Coordenada dato;
     private Nodo sig;
     private Nodo ant;
 
-    public Nodo(int dato, Nodo sig, Nodo ant) {
+    public Nodo(Coordenada dato, Nodo sig, Nodo ant) {
         this.dato = dato;
         this.sig = sig;
         this.ant = ant;
     }
 
-    public int getDato() {
+    public Coordenada getDato() {
         return dato;
     }
 
-    public void setDato(int dato) {
+    public void setDato(Coordenada dato) {
         this.dato = dato;
     }
 

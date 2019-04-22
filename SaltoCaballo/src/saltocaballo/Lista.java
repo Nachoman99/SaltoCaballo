@@ -51,7 +51,7 @@ public class Lista {
         return "Lista{" + "primero=" + primero + ", ultimo=" + ultimo + ", temporal=" + temporal + '}';
     }
     
-    public void insertarInicio(int dato){
+    public void insertarInicio(Coordenada dato){
         Nodo nuevo = new Nodo(dato, null, null);
         if (ultimo == null) {
             primero = nuevo;
@@ -63,7 +63,7 @@ public class Lista {
         }
     }
     
-    public void insertarFinal(int dato){
+    public void insertarFinal(Coordenada dato){
         Nodo nuevo = new Nodo(dato, null, null);
         if (ultimo == null) {
             ultimo = nuevo;
@@ -75,8 +75,8 @@ public class Lista {
         }
     }
     
-    public int eliminarInicio() throws ExceptionsCaballo{
-        int valorRet = 0;
+    public Coordenada eliminarInicio() throws ExceptionsCaballo{
+        Coordenada valorRet;
         if (primero == null || ultimo == null) {
             throw new ExceptionsCaballo("La lista está vacía");
         }else if(primero.getSig() == null){
@@ -91,8 +91,8 @@ public class Lista {
         return valorRet;
     }
     
-    public int eliminarFinal() throws ExceptionsCaballo{
-        int valorRet = 0;
+    public Coordenada eliminarFinal() throws ExceptionsCaballo{
+        Coordenada valorRet;
         if (primero == null && ultimo == null) {
             throw new ExceptionsCaballo("La lista está vacía");
         }else{
@@ -114,8 +114,8 @@ public class Lista {
         }
     }
     
-    public int eliminarDatoEspecifico(int dato) throws ExceptionsCaballo{
-        int valorRet = 0;
+    public Coordenada eliminarDatoEspecifico(Coordenada dato) throws ExceptionsCaballo{
+        Coordenada valorRet;
         if (primero == null || ultimo == null) {
             throw new ExceptionsCaballo("La lista está vacía");
         }else if(primero.getDato() == dato){
@@ -142,8 +142,8 @@ public class Lista {
         throw new ExceptionsCaballo("El dato no se encuentra en la lista");
     }
     
-    public int eliminarIndice(int index) throws ExceptionsCaballo{
-        int valorRet = 0;
+    public Coordenada eliminarIndice(int index) throws ExceptionsCaballo{
+        Coordenada valorRet;
         int count = 0;
         if (primero == null) {
             throw new ExceptionsCaballo("La lista está vacía");
@@ -166,53 +166,6 @@ public class Lista {
             }
         }
         throw new ExceptionsCaballo("No se encuentra el indice especificado");
-    }
-    
-    public void insertarOrdenado(int dato){
-        Nodo nuevo = new Nodo(dato, null, null);
-        if (primero == null) {
-            insertarInicio(dato);
-        }else if(primero.getSig() == null){
-            if (dato <= primero.getDato()) {
-                insertarInicio(dato);
-            }else if(dato >= ultimo.getDato()){
-                insertarFinal(dato);
-            }
-        }else if(dato <= primero.getDato()){
-            insertarInicio(dato);
-        }else if(dato >= ultimo.getDato()){
-            insertarFinal(dato);
-        }else{
-            temporal = primero;
-            while (temporal.getSig() != null) {                
-                if (dato <= temporal.getSig().getDato()) {
-                    nuevo.setSig(temporal.getSig());
-                    nuevo.setAnt(temporal);
-                    temporal.getSig().setAnt(nuevo);
-                    temporal.setSig(nuevo);
-                    break;
-                }else{
-                    temporal = temporal.getSig();
-                }
-            }
-        }
-    }
-    
-    public void ordenarLista(){
-        int datoTemp;
-        boolean ordenado = true;
-        temporal = primero;
-        do {            
-            ordenado = true;
-            for (Nodo temp = primero; temp.getSig() != null; temp = temp.getSig()) {
-                if (temp.getDato() > temp.getSig().getDato()) {
-                    datoTemp = temp.getDato();
-                    temp.setDato(temp.getSig().getDato());
-                    temp.getSig().setDato(datoTemp);
-                    ordenado = false;
-                }
-            }
-        } while (ordenado != true);
     }
     
     public String imprimirLista(){
