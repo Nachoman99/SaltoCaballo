@@ -15,31 +15,31 @@ public class Tablero {
     private Celda[][] tablero;
 
     /**
-     *
+     * Constructor
      */
     public Tablero() {
         tablero= new Celda[5][5];
     }
 
     /**
-     *
-     * @return
+     * get
+     * @return matriz de celdas
      */
     public Celda[][] getTablero() {
         return tablero;
     }
 
     /**
-     *
-     * @param tablero
+     * Set 
+     * @param tablero Matriz de celdas
      */
     public void setTablero(Celda[][] tablero) {
         this.tablero = tablero;
     }
 
     /**
-     *
-     * @return
+     * To String
+     * @return String
      */
     @Override
     public String toString() {
@@ -47,7 +47,7 @@ public class Tablero {
     }
     
     /**
-     *
+     * Este método verifica los posibles movimientos que el caballo tiene
      */
     public void posiblesMoviemientos(){
         for (int i = 0; i < tablero.length; i++) {
@@ -99,7 +99,7 @@ public class Tablero {
     }
     
     /**
-     *
+     * 
      * @param x
      * @param y
      */

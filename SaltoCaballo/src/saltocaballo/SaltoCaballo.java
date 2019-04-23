@@ -12,7 +12,7 @@ package saltocaballo;
 public class SaltoCaballo {
 
     /**
-     * @param args the command line arguments
+     * Main
      */
     public static void main(String[] args) {
         // TODO code application logic here

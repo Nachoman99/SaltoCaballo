@@ -15,10 +15,10 @@ public class Nodo {
     private Nodo ant;
 
     /**
-     *
-     * @param dato
-     * @param sig
-     * @param ant
+     * Constructor
+     * @param dato Una coordenada
+     * @param sig Siguiente nodo en la lista
+     * @param ant Nodo anterior en la lista
      */
     public Nodo(Coordenada dato, Nodo sig, Nodo ant) {
         this.dato = dato;
@@ -26,61 +26,60 @@ public class Nodo {
         this.ant = ant;
     }
 
-    /**
-     *
-     * @return
+    /** 
+     * get
+     * @return una coordenada
      */
     public Coordenada getDato() {
         return dato;
     }
 
     /**
-     *
-     * @param dato
+     * set
+     * @param dato Coordenada
      */
     public void setDato(Coordenada dato) {
         this.dato = dato;
     }
 
     /**
-     *
-     * @return
+     * get
+     * @return Siguiente nodo en la lista
      */
     public Nodo getSig() {
         return sig;
     }
 
     /**
-     *
-     * @param sig
+     * set
+     * @param sig Siguiente en la lista
      */
     public void setSig(Nodo sig) {
         this.sig = sig;
     }
 
     /**
-     *
-     * @return
+     * get
+     * @return Anterior en la lista 
      */
     public Nodo getAnt() {
         return ant;
     }
 
     /**
-     *
-     * @param ant
+     * set
+     * @param ant Anterior en la lista
      */
     public void setAnt(Nodo ant) {
         this.ant = ant;
     }
 
     /**
-     *
-     * @return
+     * To String
+     * @return String
      */
     @Override
     public String toString() {
         return "Nodo{" + "dato=" + dato + ", sig=" + sig + ", ant=" + ant + '}';
     }
-   
 }

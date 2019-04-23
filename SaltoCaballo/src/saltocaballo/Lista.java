@@ -15,15 +15,15 @@ public class Lista {
     private Nodo temporal = null;
 
     /**
-     *
+     * Constructor vacío
      */
     public Lista() {
     }
     
     /**
-     *
-     * @param primero
-     * @param ultimo
+     * Constructor con parametros
+     * @param primero primer posicion
+     * @param ultimo ultima posicion
      */
     public Lista(Nodo primero, Nodo ultimo){
         this.primero = primero;
@@ -31,56 +31,56 @@ public class Lista {
     }
 
     /**
-     *
-     * @return
+     * get
+     * @return primero
      */
     public Nodo getPrimero() {
         return primero;
     }
 
     /**
-     *
-     * @param primero
+     * set
+     * @param primero primero
      */
     public void setPrimero(Nodo primero) {
         this.primero = primero;
     }
 
     /**
-     *
-     * @return
+     * get
+     * @return ultimo
      */
     public Nodo getUltimo() {
         return ultimo;
     }
 
     /**
-     *
-     * @param ultimo
+     * set
+     * @param ultimo ultimo
      */
     public void setUltimo(Nodo ultimo) {
         this.ultimo = ultimo;
     }
 
     /**
-     *
-     * @return
+     * get
+     * @return temporal
      */
     public Nodo getTemporal() {
         return temporal;
     }
 
     /**
-     *
-     * @param temporal
+     * set
+     * @param temporal temporal
      */
     public void setTemporal(Nodo temporal) {
         this.temporal = temporal;
     }
 
     /**
-     *
-     * @return
+     * to sstring
+     * @return String
      */
     @Override
     public String toString() {
@@ -88,8 +88,8 @@ public class Lista {
     }
     
     /**
-     *
-     * @param dato
+     * Inserta al inicio de la lista
+     * @param dato Coordenada a insertar
      */
     public void insertarInicio(Coordenada dato){
         Nodo nuevo = new Nodo(dato, null, null);
@@ -104,8 +104,8 @@ public class Lista {
     }
     
     /**
-     *
-     * @param dato
+     * Inserta al final de la lista
+     * @param dato Coordenada a insertar
      */
     public void insertarFinal(Coordenada dato){
         Nodo nuevo = new Nodo(dato, null, null);
@@ -120,9 +120,9 @@ public class Lista {
     }
     
     /**
-     *
-     * @return
-     * @throws ExceptionsCaballo
+     * Elimina el inicio de la lista
+     * @return el valor eliminado
+     * @throws ExceptionsCaballo Excepcion personalizada
      */
     public Coordenada eliminarInicio() throws ExceptionsCaballo{
         Coordenada valorRet;
@@ -141,9 +141,9 @@ public class Lista {
     }
     
     /**
-     *
-     * @return
-     * @throws ExceptionsCaballo
+     * Elimina el final de la lista
+     * @return el elemento eliminado
+     * @throws ExceptionsCaballo Excepcion personalizada
      */
     public Coordenada eliminarFinal() throws ExceptionsCaballo{
         Coordenada valorRet;
@@ -164,8 +164,8 @@ public class Lista {
     }
     
     /**
-     *
-     * @throws ExceptionsCaballo
+     * Elimina la lista
+     * @throws ExceptionsCaballo Excepcion personalizada
      */
     public void eliminarLista() throws ExceptionsCaballo{
         if (primero == null) {
@@ -177,12 +177,11 @@ public class Lista {
         }
     }
     //Revisar método
-
     /**
-     *
-     * @param dato
-     * @return
-     * @throws ExceptionsCaballo
+     * Elimina un dato en especifico
+     * @param dato dato a eliminar
+     * @return dato eliminado
+     * @throws ExceptionsCaballo Excepcion personalizada
      */
     public Coordenada eliminarDatoEspecifico(Coordenada dato) throws ExceptionsCaballo{
         Coordenada valorRet;
@@ -214,10 +213,10 @@ public class Lista {
     //Este método está mal
 
     /**
-     *
-     * @param index
-     * @return
-     * @throws ExceptionsCaballo
+     * Elimina el indice especificado
+     * @param index indice a eliminar
+     * @return Elemento eliminado
+     * @throws ExceptionsCaballo Excepcion personalizada
      */
     public Coordenada eliminarIndice(int index) throws ExceptionsCaballo{
         Coordenada valorRet;
@@ -246,16 +245,16 @@ public class Lista {
     }
     
     /**
-     *
-     * @return
+     * Ultimo dato de la lista
+     * @return el ultimo dato de la lista
      */
     public Coordenada getUltimaCoordenada(){
         return ultimo.getDato();
     }
     
     /**
-     *
-     * @return
+     * Imprime la lista
+     * @return un String con la lista
      */
     public String imprimirLista(){
         String result = "";
@@ -266,8 +265,8 @@ public class Lista {
     }
     
     /**
-     *
-     * @return
+     * Imprime la lista pero al reves
+     * @return un String con la lista
      */
     public String imprimirReves(){
         String str = "";
