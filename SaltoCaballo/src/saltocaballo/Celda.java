@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author Kevin Trejos
  */
 public class Celda {
+    private boolean ocupada;
     private String posicion;
     private ArrayList<Coordenada> posiblesMovimientos ;
 
@@ -27,9 +28,10 @@ public class Celda {
      * @param posicion este parametro indica la posicion de cada celda
      * @param posiblesMovimientos posibles movimientos del caballo
      */
-    public Celda(String posicion, ArrayList<Coordenada> posiblesMovimientos) {
+    public Celda(String posicion, ArrayList<Coordenada> posiblesMovimientos, boolean ocupada) {
         this.posicion = posicion;
         this.posiblesMovimientos = posiblesMovimientos;
+        this.ocupada = ocupada;
     }
 
     /**
@@ -65,19 +67,35 @@ public class Celda {
     }
 
     /**
+     * get
+     * @return boolean 
+     */
+    public boolean isOcupada() {
+        return ocupada;
+    }
+
+    /**
+     * set
+     * @param ocupada boolean 
+     */
+    public void setOcupada(boolean ocupada) {
+        this.ocupada = ocupada;
+    }
+    
+    /**
      * toString
      * @return to String
      */
     @Override
-    public String toString() {
-        return "Celda{" + "posicion=" + posicion + ", posiblesMovimientos=" + posiblesMovimientos + '}';
+    public String toString(){
+        return "Celda{" + "ocupada=" + ocupada + ", posicion=" + posicion + ", posiblesMovimientos=" + posiblesMovimientos + '}';
     }
-    
+
     /**
      * Añade una coordenada a un arrayList
      * @param coordenada coordenada a insertar
      */
-    public void añadirPosiblesMovimientos(Coordenada coordenada){
+    public void añadirPosiblesMovimientos(Coordenada coordenada) {
         posiblesMovimientos.add(coordenada);
     }
     

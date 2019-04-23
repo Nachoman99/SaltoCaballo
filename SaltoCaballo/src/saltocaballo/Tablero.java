@@ -52,7 +52,7 @@ public class Tablero {
     public void posiblesMoviemientos(){
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
-                tablero[i][j] = new Celda(null, new  ArrayList<>());
+                tablero[i][j] = new Celda(null, new  ArrayList<>(), false);
                 if(i+-2>=0){
                     if(j+-1>=0){
                         Coordenada movimiento5 = new Coordenada(-2, -1);
