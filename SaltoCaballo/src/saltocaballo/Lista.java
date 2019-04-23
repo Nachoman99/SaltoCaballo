@@ -95,6 +95,11 @@ public class Lista {
         Coordenada valorRet;
         if (primero == null && ultimo == null) {
             throw new ExceptionsCaballo("La lista está vacía");
+        }else if(primero.getSig() == null){
+            valorRet = primero.getDato();
+            ultimo = null;
+            primero = null;
+            return valorRet;   
         }else{
             valorRet = ultimo.getDato();
             ultimo = ultimo.getAnt();
@@ -113,7 +118,7 @@ public class Lista {
             temporal = null;
         }
     }
-    
+    //Revisar método
     public Coordenada eliminarDatoEspecifico(Coordenada dato) throws ExceptionsCaballo{
         Coordenada valorRet;
         if (primero == null || ultimo == null) {
@@ -141,7 +146,7 @@ public class Lista {
         }
         throw new ExceptionsCaballo("El dato no se encuentra en la lista");
     }
-    
+    //Este método está mal
     public Coordenada eliminarIndice(int index) throws ExceptionsCaballo{
         Coordenada valorRet;
         int count = 0;
@@ -166,6 +171,10 @@ public class Lista {
             }
         }
         throw new ExceptionsCaballo("No se encuentra el indice especificado");
+    }
+    
+    public Coordenada getUltimaCoordenada(){
+        return ultimo.getDato();
     }
     
     public String imprimirLista(){
