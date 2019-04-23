@@ -33,40 +33,40 @@ public class Celda {
     }
 
     /**
-     * getPoscision
-     * @return
+     * get
+     * @return la posicion
      */
     public String getPosicion() {
         return posicion;
     }
 
     /**
-     *
-     * @param posicion
+     * set
+     * @param posicion la posicion
      */
     public void setPoscicion(String posicion) {
         this.posicion = posicion;
     }
 
     /**
-     *
-     * @return
+     * get
+     * @return  un arrayList con los posibles movimientos
      */
     public ArrayList<Coordenada> getPosiblesMovimientos() {
         return posiblesMovimientos;
     }
 
     /**
-     *
-     * @param posiblesMovimientos
+     * set
+     * @param posiblesMovimientos posibles movimientos
      */
     public void setPosiblesMovimientos(ArrayList<Coordenada> posiblesMovimientos) {
         this.posiblesMovimientos = posiblesMovimientos;
     }
 
     /**
-     *
-     * @return
+     * toString
+     * @return to String
      */
     @Override
     public String toString() {
@@ -74,16 +74,16 @@ public class Celda {
     }
     
     /**
-     *
-     * @param coordenada
+     * Añade una coordenada a un arrayList
+     * @param coordenada coordenada a insertar
      */
     public void añadirPosiblesMovimientos(Coordenada coordenada){
         posiblesMovimientos.add(coordenada);
     }
     
     /**
-     *
-     * @param coordenada
+     * Elimina un coordenada de un arrayList
+     * @param coordenada coordenada a eliminar
      */
     public void eliminarPosiblesMovimientos(Coordenada coordenada){
         posiblesMovimientos.remove(coordenada);

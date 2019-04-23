@@ -14,15 +14,15 @@ public class Coordenada {
     private int y;
 
     /**
-     *
+     * Constructor vacío
      */
     public Coordenada() {
     }
 
     /**
-     *
-     * @param x
-     * @param y
+     * Constructor con parametros
+     * @param x un valor entero
+     * @param y un valor entero
      */
     public Coordenada(int x, int y) {
         this.x = x;
@@ -30,45 +30,43 @@ public class Coordenada {
     }
 
     /**
-     *
-     * @return
+     * get
+     * @return un valor entero
      */
     public int getX() {
         return x;
     }
 
     /**
-     *
-     * @param x
+     * set
+     * @param x un valor entero
      */
     public void setX(int x) {
         this.x = x;
     }
 
     /**
-     *
-     * @return
+     * get
+     * @return un valor entero
      */
     public int getY() {
         return y;
     }
 
     /**
-     *
-     * @param y
+     * set
+     * @param y un valor entero
      */
     public void setY(int y) {
         this.y = y;
     }
 
     /**
-     *
-     * @return
+     * to string
+     * @return un String
      */
     @Override
     public String toString() {
         return "Coordenadas{" + "x=" + x + ", y=" + y + '}';
     }
-    
-    
 }

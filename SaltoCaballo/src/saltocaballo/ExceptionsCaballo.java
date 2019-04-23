@@ -12,8 +12,8 @@ package saltocaballo;
 public class ExceptionsCaballo extends Exception{
 
     /**
-     *
-     * @param mensaje
+     * Constructor para excepciones personalizadas
+     * @param mensaje mensaje a mostrar
      */
     public ExceptionsCaballo(String mensaje) {
         super(mensaje);
