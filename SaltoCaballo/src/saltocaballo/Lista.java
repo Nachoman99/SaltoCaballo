@@ -14,43 +14,83 @@ public class Lista {
     private Nodo ultimo = null;
     private Nodo temporal = null;
 
+    /**
+     *
+     */
     public Lista() {
     }
     
+    /**
+     *
+     * @param primero
+     * @param ultimo
+     */
     public Lista(Nodo primero, Nodo ultimo){
         this.primero = primero;
         this.ultimo = ultimo;
     }
 
+    /**
+     *
+     * @return
+     */
     public Nodo getPrimero() {
         return primero;
     }
 
+    /**
+     *
+     * @param primero
+     */
     public void setPrimero(Nodo primero) {
         this.primero = primero;
     }
 
+    /**
+     *
+     * @return
+     */
     public Nodo getUltimo() {
         return ultimo;
     }
 
+    /**
+     *
+     * @param ultimo
+     */
     public void setUltimo(Nodo ultimo) {
         this.ultimo = ultimo;
     }
 
+    /**
+     *
+     * @return
+     */
     public Nodo getTemporal() {
         return temporal;
     }
 
+    /**
+     *
+     * @param temporal
+     */
     public void setTemporal(Nodo temporal) {
         this.temporal = temporal;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Lista{" + "primero=" + primero + ", ultimo=" + ultimo + ", temporal=" + temporal + '}';
     }
     
+    /**
+     *
+     * @param dato
+     */
     public void insertarInicio(Coordenada dato){
         Nodo nuevo = new Nodo(dato, null, null);
         if (ultimo == null) {
@@ -63,6 +103,10 @@ public class Lista {
         }
     }
     
+    /**
+     *
+     * @param dato
+     */
     public void insertarFinal(Coordenada dato){
         Nodo nuevo = new Nodo(dato, null, null);
         if (ultimo == null) {
@@ -75,6 +119,11 @@ public class Lista {
         }
     }
     
+    /**
+     *
+     * @return
+     * @throws ExceptionsCaballo
+     */
     public Coordenada eliminarInicio() throws ExceptionsCaballo{
         Coordenada valorRet;
         if (primero == null || ultimo == null) {
@@ -91,6 +140,11 @@ public class Lista {
         return valorRet;
     }
     
+    /**
+     *
+     * @return
+     * @throws ExceptionsCaballo
+     */
     public Coordenada eliminarFinal() throws ExceptionsCaballo{
         Coordenada valorRet;
         if (primero == null && ultimo == null) {
@@ -109,6 +163,10 @@ public class Lista {
         return valorRet;
     }
     
+    /**
+     *
+     * @throws ExceptionsCaballo
+     */
     public void eliminarLista() throws ExceptionsCaballo{
         if (primero == null) {
             throw new ExceptionsCaballo("La lista está vacía");
@@ -119,6 +177,13 @@ public class Lista {
         }
     }
     //Revisar método
+
+    /**
+     *
+     * @param dato
+     * @return
+     * @throws ExceptionsCaballo
+     */
     public Coordenada eliminarDatoEspecifico(Coordenada dato) throws ExceptionsCaballo{
         Coordenada valorRet;
         if (primero == null || ultimo == null) {
@@ -147,6 +212,13 @@ public class Lista {
         throw new ExceptionsCaballo("El dato no se encuentra en la lista");
     }
     //Este método está mal
+
+    /**
+     *
+     * @param index
+     * @return
+     * @throws ExceptionsCaballo
+     */
     public Coordenada eliminarIndice(int index) throws ExceptionsCaballo{
         Coordenada valorRet;
         int count = 0;
@@ -173,10 +245,18 @@ public class Lista {
         throw new ExceptionsCaballo("No se encuentra el indice especificado");
     }
     
+    /**
+     *
+     * @return
+     */
     public Coordenada getUltimaCoordenada(){
         return ultimo.getDato();
     }
     
+    /**
+     *
+     * @return
+     */
     public String imprimirLista(){
         String result = "";
         for (Nodo temp = primero; temp != null;temp = temp.getSig()) {
@@ -185,6 +265,10 @@ public class Lista {
         return result;
     }
     
+    /**
+     *
+     * @return
+     */
     public String imprimirReves(){
         String str = "";
         for(Nodo temp = ultimo; temp != null; temp = temp.getAnt()){

@@ -11,6 +11,10 @@ package saltocaballo;
  */
 public class ExceptionsCaballo extends Exception{
 
+    /**
+     *
+     * @param mensaje
+     */
     public ExceptionsCaballo(String mensaje) {
         super(mensaje);
     }   

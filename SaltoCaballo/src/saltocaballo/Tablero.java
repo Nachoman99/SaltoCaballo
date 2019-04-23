@@ -14,23 +14,41 @@ import java.util.ArrayList;
 public class Tablero {
     private Celda[][] tablero;
 
+    /**
+     *
+     */
     public Tablero() {
         tablero= new Celda[5][5];
     }
 
+    /**
+     *
+     * @return
+     */
     public Celda[][] getTablero() {
         return tablero;
     }
 
+    /**
+     *
+     * @param tablero
+     */
     public void setTablero(Celda[][] tablero) {
         this.tablero = tablero;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Tablero{" + "tablero=" + tablero + '}';
     }
     
+    /**
+     *
+     */
     public void posiblesMoviemientos(){
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
@@ -80,7 +98,11 @@ public class Tablero {
         }
     }
     
-    
+    /**
+     *
+     * @param x
+     * @param y
+     */
     public void posiblesMovimientosEspecifico(int x, int y){
         ArrayList movimientos = tablero[x][y].getPosiblesMovimientos();
         System.out.println("Posibles moviemientos de "+'('+x+','+y+')'+"\n"+movimientos.toString());

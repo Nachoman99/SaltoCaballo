@@ -12,43 +12,79 @@ import java.util.ArrayList;
  * @author Kevin Trejos
  */
 public class Celda {
-    private String poscicion;
+    private String posicion;
     private ArrayList<Coordenada> posiblesMovimientos ;
 
+    /**
+     * Constructor
+     */
     public Celda() {
         posiblesMovimientos = new ArrayList<>();
     }
     
-    public Celda(String poscicion, ArrayList<Coordenada> posiblesMovimientos) {
-        this.poscicion = poscicion;
+    /**
+     * Constructor
+     * @param posicion este parametro indica la posicion de cada celda
+     * @param posiblesMovimientos posibles movimientos del caballo
+     */
+    public Celda(String posicion, ArrayList<Coordenada> posiblesMovimientos) {
+        this.posicion = posicion;
         this.posiblesMovimientos = posiblesMovimientos;
     }
 
-    public String getPoscicion() {
-        return poscicion;
+    /**
+     * getPoscision
+     * @return
+     */
+    public String getPosicion() {
+        return posicion;
     }
 
-    public void setPoscicion(String poscicion) {
-        this.poscicion = poscicion;
+    /**
+     *
+     * @param posicion
+     */
+    public void setPoscicion(String posicion) {
+        this.posicion = posicion;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Coordenada> getPosiblesMovimientos() {
         return posiblesMovimientos;
     }
 
+    /**
+     *
+     * @param posiblesMovimientos
+     */
     public void setPosiblesMovimientos(ArrayList<Coordenada> posiblesMovimientos) {
         this.posiblesMovimientos = posiblesMovimientos;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
-        return "Celda{" + "poscicion=" + poscicion + ", posiblesMovimientos=" + posiblesMovimientos + '}';
+        return "Celda{" + "posicion=" + posicion + ", posiblesMovimientos=" + posiblesMovimientos + '}';
     }
     
+    /**
+     *
+     * @param coordenada
+     */
     public void añadirPosiblesMovimientos(Coordenada coordenada){
         posiblesMovimientos.add(coordenada);
     }
     
+    /**
+     *
+     * @param coordenada
+     */
     public void eliminarPosiblesMovimientos(Coordenada coordenada){
         posiblesMovimientos.remove(coordenada);
     }
