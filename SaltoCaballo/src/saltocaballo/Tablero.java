@@ -6,6 +6,7 @@
 package saltocaballo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -43,7 +44,7 @@ public class Tablero {
      */
     @Override
     public String toString() {
-        return "Tablero{" + "tablero=" + tablero + '}';
+        return "Tablero{" + "tablero=" + Arrays.toString(tablero) + '}';
     }
     
     /**
@@ -108,10 +109,10 @@ public class Tablero {
      */
     public void posiblesMovimientosEspecifico(int x, int y){
         ArrayList movimientos = tablero[x][y].getPosiblesMovimientos();
-        System.out.println("Posibles moviemientos de "+'('+x+','+y+')'+"\n"+movimientos.toString());  
+        System.out.println("Posibles movimientos de "+'('+x+','+y+')'+"\n"+movimientos.toString());  
     }
     
-    public void vueltaAtras(){
+    public void vueltaAtras(boolean ocupada, ArrayList posiblesMovimientos){
         
     }
 }
