@@ -113,7 +113,7 @@ public class Tablero {
         System.out.println("Posibles movimientos de "+'('+x+','+y+')'+"\n"+movimientos.toString());  
     }
     
-    public void vueltaAtras(Lista listaMovimientos, Celda celdaInicial, boolean ocupada, ArrayList posiblesMovimientos){
+    public void vueltaAtras(Lista listaMovimientos, Coordenada posicionInicial){
         
     }
     
