@@ -27,6 +27,7 @@ public class Celda {
      * Constructor
      * @param posicion este parametro indica la posicion de cada celda
      * @param posiblesMovimientos posibles movimientos del caballo
+     * @param ocupada si la celda ya fue visitada o no
      */
     public Celda(String posicion, ArrayList<Coordenada> posiblesMovimientos, boolean ocupada) {
         this.posicion = posicion;
