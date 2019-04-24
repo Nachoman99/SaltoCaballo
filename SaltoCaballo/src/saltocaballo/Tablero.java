@@ -50,6 +50,7 @@ public class Tablero {
     /**
      * Este método verifica los posibles movimientos que el caballo tiene
      */
+    //este metodo hay que llamarlo antes de todo para cargar las celdas con sus moviemientos
     public void posiblesMovimientos(){
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
@@ -114,5 +115,25 @@ public class Tablero {
     
     public void vueltaAtras(Lista listaMovimientos, Celda celdaInicial, boolean ocupada, ArrayList posiblesMovimientos){
         
+    }
+    
+    public boolean tableroListo(){
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero.length; j++) {
+                if(tablero[i][j].isOcupada()==false){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    //metodo solo para pruebas se puede borrar despues
+    public void ponerTrue(){
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero.length; j++) {
+                tablero[i][j].setOcupada(true);
+            }
+        }
+        //tablero[0][0].setOcupada(false);
     }
 }
