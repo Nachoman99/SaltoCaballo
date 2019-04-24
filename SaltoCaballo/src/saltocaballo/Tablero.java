@@ -114,7 +114,30 @@ public class Tablero {
     }
     
     public void vueltaAtras(Lista listaMovimientos, Coordenada posicionInicial){
-        
+        if (tableroListo() == true) {
+            System.out.println("Se terminó el proceso");
+        }else{
+            Coordenada coordenadaNueva;
+            int coordenadaY;
+            int coordenadaX;
+            boolean realizoMovimiento = true;
+            for (int i = 0; i < tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().size(); i++) {
+                coordenadaNueva = tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().get(i);
+                coordenadaX = coordenadaNueva.getX();
+                coordenadaY = coordenadaNueva.getY();
+                if (tablero[posicionInicial.getX() + coordenadaX][posicionInicial.getY() + coordenadaY].isOcupada() == false) {
+                    Coordenada coordenadaInsertar = null;
+                    coordenadaInsertar.setX(posicionInicial.getX() + coordenadaX);
+                    coordenadaInsertar.setY(posicionInicial.getY() + coordenadaY);
+                    listaMovimientos.insertarFinal(coordenadaInsertar);
+                    vueltaAtras(listaMovimientos, coordenadaInsertar);
+                    realizoMovimiento = false;
+                }
+            }
+            if (realizoMovimiento == true) {
+                
+            }
+        }
     }
     
     public boolean tableroListo(){
