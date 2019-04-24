@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Celda {
     private boolean ocupada;
-    private String posicion;
+    private int posicion;
     private ArrayList<Coordenada> posiblesMovimientos ;
 
     /**
@@ -29,7 +29,7 @@ public class Celda {
      * @param posiblesMovimientos posibles movimientos del caballo
      * @param ocupada si la celda ya fue visitada o no
      */
-    public Celda(String posicion, ArrayList<Coordenada> posiblesMovimientos, boolean ocupada) {
+    public Celda(int posicion, ArrayList<Coordenada> posiblesMovimientos, boolean ocupada) {
         this.posicion = posicion;
         this.posiblesMovimientos = posiblesMovimientos;
         this.ocupada = ocupada;
@@ -39,7 +39,7 @@ public class Celda {
      * get
      * @return la posicion
      */
-    public String getPosicion() {
+    public int getPosicion() {
         return posicion;
     }
 
@@ -47,7 +47,7 @@ public class Celda {
      * set
      * @param posicion la posicion
      */
-    public void setPoscicion(String posicion) {
+    public void setPosicion(int posicion) {
         this.posicion = posicion;
     }
 
@@ -97,7 +97,7 @@ public class Celda {
      * @param coordenada coordenada a insertar
      */
     public void añadirPosiblesMovimientos(Coordenada coordenada) {
-        posiblesMovimientos.add(coordenada);
+        posiblesMovimientos.add(0, coordenada);
     }
     
     /**
@@ -106,5 +106,9 @@ public class Celda {
      */
     public void eliminarPosiblesMovimientos(Coordenada coordenada){
         posiblesMovimientos.remove(coordenada);
+    }
+    
+    public Coordenada eliminarMovimiento(int index){
+        return posiblesMovimientos.remove(index);
     }
 }

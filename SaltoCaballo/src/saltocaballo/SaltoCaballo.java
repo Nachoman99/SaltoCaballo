@@ -5,6 +5,7 @@
  */
 package saltocaballo;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,11 +20,16 @@ public class SaltoCaballo {
     public static void main(String[] args) {
 
         Tablero tablero = new Tablero();
+//System.out.println(tablero.imprimirTablero());
         tablero.posiblesMovimientos();
+        Coordenada coordenada = new Coordenada(0, 0);
+        Lista lista = new Lista();
+        tablero.vueltaAtras(lista, coordenada);
+        System.out.println(tablero.imprimirTablero());
         //tablero.posiblesMovimientosEspecifico(3, 0);
-        System.out.println("Esta lista= "+tablero.tableroListo());
-        tablero.ponerTrue();
-        System.out.println("Esta lista= "+tablero.tableroListo());
+//        System.out.println("Esta lista= "+tablero.tableroListo());
+  //      tablero.ponerTrue();
+    //    System.out.println("Esta lista= "+tablero.tableroListo());
 //        boolean salir = false;
 //        while (salir == false) {
 //            int opcion;
