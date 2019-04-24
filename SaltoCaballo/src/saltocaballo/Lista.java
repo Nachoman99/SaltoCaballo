@@ -275,4 +275,8 @@ public class Lista {
         }
         return str;
     }
+    
+    public Coordenada getPenultimo(){
+        return ultimo.getAnt().getDato();
+    }
 }
