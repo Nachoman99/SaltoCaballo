@@ -180,4 +180,16 @@ public class Tablero {
         }
         //tablero[0][0].setOcupada(false);
     }
+    
+    public String imprimirTablero(){
+        String print="";
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero.length; j++) {
+                print+=tablero[i][j].getPosicion()+" ";
+            }
+            print +="\n";
+        }
+        return print;
+    }
+}
 }
