@@ -49,7 +49,7 @@ public class Tablero {
     /**
      * Este método verifica los posibles movimientos que el caballo tiene
      */
-    public void posiblesMoviemientos(){
+    public void posiblesMovimientos(){
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
                 tablero[i][j] = new Celda(null, new  ArrayList<>(), false);
