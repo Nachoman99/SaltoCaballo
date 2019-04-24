@@ -6,7 +6,6 @@
 package saltocaballo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -14,7 +13,8 @@ import java.util.Arrays;
  */
 public class Tablero {
     private Celda[][] tablero;
-
+    private int numeroMovimientos = 1;
+    
     /**
      * Constructor
      */
@@ -38,20 +38,28 @@ public class Tablero {
         this.tablero = tablero;
     }
 
+    public int getNumeroMovimientos() {
+        return numeroMovimientos;
+    }
+
+    public void setNumeroMovimientos(int numeroMovimientos) {
+        this.numeroMovimientos = numeroMovimientos;
+    }
+
     /**
      * To String
      * @return String
      */
     @Override
-    public String toString() {
-        return "Tablero{" + "tablero=" + Arrays.toString(tablero) + '}';
+    public String toString(){
+        return "Tablero{" + "tablero=" + tablero + ", numeroMovimientos=" + numeroMovimientos + '}';
     }
-    
+
     /**
      * Este método verifica los posibles movimientos que el caballo tiene
      */
     //este metodo hay que llamarlo antes de todo para cargar las celdas con sus moviemientos
-    public void posiblesMovimientos(){
+    public void posiblesMovimientos() {
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
                 tablero[i][j] = new Celda(null, new  ArrayList<>(), false);
@@ -130,8 +138,10 @@ public class Tablero {
                     coordenadaInsertar.setX(posicionInicial.getX() + coordenadaX);
                     coordenadaInsertar.setY(posicionInicial.getY() + coordenadaY);
                     listaMovimientos.insertarFinal(coordenadaInsertar);
-                    vueltaAtras(listaMovimientos, coordenadaInsertar);
+                    tablero[coordenadaInsertar.getX()][coordenadaInsertar.getY()].setPoscicion(Integer.toString(numeroMovimientos));
+                    numeroMovimientos += 1;
                     realizoMovimiento = false;
+                    vueltaAtras(listaMovimientos, coordenadaInsertar);
                 }
             }
             if (realizoMovimiento == true) {
@@ -139,6 +149,8 @@ public class Tablero {
                 coordenadaX = coordenadaAnterior.getX();
                 coordenadaY = coordenadaAnterior.getY();
                 tablero[coordenadaX][coordenadaY].getPosiblesMovimientos().remove(0);
+                tablero[coordenadaX][coordenadaY].setPoscicion(Integer.toString(0));
+                numeroMovimientos += -1;
                 try {
                     listaMovimientos.eliminarFinal();
                 } catch (ExceptionsCaballo e) {
