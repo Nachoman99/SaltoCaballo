@@ -108,8 +108,10 @@ public class Tablero {
      */
     public void posiblesMovimientosEspecifico(int x, int y){
         ArrayList movimientos = tablero[x][y].getPosiblesMovimientos();
-        System.out.println("Posibles moviemientos de "+'('+x+','+y+')'+"\n"+movimientos.toString());
-        
+        System.out.println("Posibles moviemientos de "+'('+x+','+y+')'+"\n"+movimientos.toString());  
+    }
+    
+    public void vueltaAtras(){
         
     }
 }
