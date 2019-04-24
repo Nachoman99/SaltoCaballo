@@ -135,7 +135,16 @@ public class Tablero {
                 }
             }
             if (realizoMovimiento == true) {
-                
+                Coordenada coordenadaAnterior = listaMovimientos.getPenultimo();
+                coordenadaX = coordenadaAnterior.getX();
+                coordenadaY = coordenadaAnterior.getY();
+                tablero[coordenadaX][coordenadaY].getPosiblesMovimientos().remove(0);
+                try {
+                    listaMovimientos.eliminarFinal();
+                } catch (ExceptionsCaballo e) {
+                    System.out.println(e);
+                }
+                vueltaAtras(listaMovimientos, coordenadaAnterior);
             }
         }
     }
