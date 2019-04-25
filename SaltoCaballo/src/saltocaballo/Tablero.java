@@ -7,6 +7,7 @@ package saltocaballo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  *
@@ -112,6 +113,77 @@ public class Tablero {
         }
     }
     
+    public void borrarEspecificoMoviento(int xOriginal, int yOriginal, int xComparar, int yComparar){
+        int indiceBorrar;
+        int limite= tablero[xOriginal][yOriginal].getPosiblesMovimientos().size();
+        for (int i = 0; i <limite; i++) {
+            Coordenada cordenada1=tablero[xOriginal][yOriginal].getPosiblesMovimientos().get(i);
+            //System.out.println("X= "+cordenada1.getX()+"Y= "+cordenada1.getY());
+            if((cordenada1.getX() == xComparar)&&(cordenada1.getY() == yComparar)){
+                tablero[xOriginal][yOriginal].getPosiblesMovimientos().remove(i);
+                System.out.println("se borro la posicion maaaaaaaaaaaaalaaaa");
+            }
+        }
+    }
+    
+    
+    public void borrarMovientosPosibles(Coordenada coordendaActualizar){
+        int i=coordendaActualizar.getX();
+        int j = coordendaActualizar.getY();
+        tablero[i][j].setPosiblesMovimientos(null);
+    }
+    
+    public void actualizarPosibles(Coordenada coordendaActualizar){
+        int i=coordendaActualizar.getX();
+        int j = coordendaActualizar.getY();
+        tablero[i][j] = new Celda(0, new  ArrayList<>(), false);
+                if(i+-2>=0){
+                    if(j+-1>=0){
+                        Coordenada movimiento5 = new Coordenada(-2, -1);
+                        tablero[i][j].añadirPosiblesMovimientos(movimiento5);
+                    }
+                    if(j+1<tablero.length){
+                        Coordenada movimiento6 = new Coordenada(-2, +1);
+                        tablero[i][j].añadirPosiblesMovimientos(movimiento6);
+                    }
+                }
+  
+                if(i+-1>=0){
+                    if(j+-2>=0){
+                        Coordenada movimiento3 = new Coordenada(-1, -2);
+                        tablero[i][j].añadirPosiblesMovimientos(movimiento3);
+                    }
+                    if(j+2<tablero.length){
+                        Coordenada movimiento4 = new Coordenada(-1, +2);
+                        tablero[i][j].añadirPosiblesMovimientos(movimiento4);
+                    }
+                }
+                
+                if(i+1<tablero.length){
+                    if(j+-2>=0){
+                        Coordenada movimiento1 = new Coordenada(+1, -2);
+                        tablero[i][j].añadirPosiblesMovimientos(movimiento1);
+                    }
+                    if(j+2<tablero.length){
+                        Coordenada movimiento2 = new Coordenada(+1, +2);
+                        tablero[i][j].setPosicion(0);
+                        tablero[i][j].añadirPosiblesMovimientos(movimiento2);
+                    }
+                }
+        
+                if(i+2<tablero.length){
+                    if (j+1<tablero.length) {
+                        Coordenada movimiento7 = new Coordenada(+2, +1);
+                        tablero[i][j].añadirPosiblesMovimientos(movimiento7);
+                    }
+                    if(j-1>=0){
+                        Coordenada movimiento8 = new Coordenada(+2, -1);
+                        tablero[i][j].añadirPosiblesMovimientos(movimiento8);
+                    }
+                }  
+    }
+    
+    
     /**
      * 
      * @param x
@@ -143,8 +215,8 @@ public class Tablero {
                 if (tablero[posicionInicial.getX() + coordenadaX][posicionInicial.getY() + coordenadaY].isOcupada() == false) {
                     System.out.println("Tablero");
                     Coordenada coordenadaInsertar = new Coordenada();
-                    coordenadaInsertar.setX(posicionInicial.getX() + coordenadaX);
-                    coordenadaInsertar.setY(posicionInicial.getY() + coordenadaY);
+                    coordenadaInsertar.setX(coordenadaX+posicionInicial.getX());
+                    coordenadaInsertar.setY(coordenadaY+posicionInicial.getY());
                     listaMovimientos.insertarFinal(coordenadaInsertar);
                     tablero[coordenadaInsertar.getX()][coordenadaInsertar.getY()].setOcupada(true);
                     tablero[coordenadaInsertar.getX()][coordenadaInsertar.getY()].setPosicion(numeroMovimientos);
@@ -163,9 +235,15 @@ public class Tablero {
                     coordenadaY = coordenadaAnterior.getY();
                     tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setPosicion(-1);
                     tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setOcupada(false);
-                    tablero[coordenadaX][coordenadaY].getPosiblesMovimientos().remove(0);
+                    
+                    //tablero[coordenadaX][coordenadaY].eliminarPosiblesMovimientos(coordenadaUltima);
+                    borrarEspecificoMoviento(coordenadaX, coordenadaY, coordenadaUltima.getX(), coordenadaUltima.getY());
+                    
+                    System.out.println(tablero[coordenadaX][coordenadaY].getPosiblesMovimientos());
                     tablero[coordenadaX][coordenadaY].setPosicion(numeroMovimientos - 2);
                     numeroMovimientos += - 1;
+                    //borrarMovientosPosibles(coordenadaUltima);
+                    //actualizarPosibles(coordenadaUltima);
                     try {
                         listaMovimientos.eliminarFinal();
                     } catch (ExceptionsCaballo e) {
@@ -173,6 +251,7 @@ public class Tablero {
                     }
                     System.out.println("Tablero cuando retrocede");
                     System.out.println(imprimirTablero());
+                    
                     vueltaAtras(listaMovimientos, coordenadaAnterior);
                     return;
                 }else{
@@ -181,6 +260,10 @@ public class Tablero {
                 }   
             }
         }
+    }
+    
+    public void eliminarPrimerMovientoPosible(int x,int y){
+        tablero[x][y].eliminarMovimiento(0);
     }
     
     public Celda[][] copiarTablero(){
