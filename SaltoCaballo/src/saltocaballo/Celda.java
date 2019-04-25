@@ -105,7 +105,11 @@ public class Celda {
      * @param coordenada coordenada a eliminar
      */
     public void eliminarPosiblesMovimientos(Coordenada coordenada){
-        posiblesMovimientos.remove(coordenada);
+        for (int i = 0; i < posiblesMovimientos.size(); i++) {
+            if (posiblesMovimientos.get(i) == coordenada) {
+                posiblesMovimientos.remove(i);
+            }
+        }
     }
     
     public Coordenada eliminarMovimiento(int index){
