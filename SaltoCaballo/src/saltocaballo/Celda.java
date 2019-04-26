@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Celda {
     private boolean ocupada;
     private int posicion;
-    private ArrayList<Coordenada> posiblesMovimientos ;
+    private ArrayList<Coordenada> posiblesMovimientos;
 
     /**
      * Constructor

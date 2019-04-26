@@ -24,11 +24,9 @@ public class SaltoCaballo {
         tablero.posiblesMovimientos();
         Coordenada coordenada = new Coordenada(0, 0);
         Lista lista = new Lista();
-        try {
+        
            tablero.vueltaAtras(lista, coordenada); 
-        } catch (ExceptionsCaballo e) {
-            System.out.println(e);
-        }
+        
         
         System.out.println(tablero.imprimirTablero());
         //tablero.posiblesMovimientosEspecifico(3, 0);
