@@ -145,22 +145,22 @@ public class Lista {
      * @return el elemento eliminado
      * @throws ExceptionsCaballo Excepcion personalizada
      */
-    public Coordenada eliminarFinal() throws ExceptionsCaballo{
+    public boolean eliminarFinal(){
         Coordenada valorRet;
         if (primero == null && ultimo == null) {
-            throw new ExceptionsCaballo("La lista está vacía");
+            return false;
         }else if(primero.getSig() == null){
             valorRet = primero.getDato();
             ultimo = null;
             primero = null;
-            return valorRet;   
+            return true;   
         }else{
             valorRet = ultimo.getDato();
             ultimo = ultimo.getAnt();
             ultimo.getSig().setAnt(null);
             ultimo.setSig(null);
         }
-        return valorRet;
+        return true;
     }
     
     /**

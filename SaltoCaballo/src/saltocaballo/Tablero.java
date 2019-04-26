@@ -17,6 +17,8 @@ public class Tablero {
     private Celda[][] tablero;
     private int numeroMovimientos = 1;
     private Coordenada coordenadaInicio;
+    private Lista listaMovimientos=new Lista();
+    private ArrayList<Coordenada> listamov;
     
     /**
      * Constructor
@@ -290,7 +292,8 @@ public class Tablero {
 //        }
 //    }
     
-    public void vueltaAtras(Lista listaMovimientos, Coordenada posicionInicial) throws ExceptionsCaballo{
+    public void vueltaAtras(Coordenada posicionInicial){
+        listamov=new ArrayList<>();
         Coordenada coordenadaNueva;
         Coordenada coordenadaInsertar = new Coordenada();
         int coordenadaX=0;
@@ -303,65 +306,85 @@ public class Tablero {
                 int xInicial=posicionInicial.getX();
                 int yInicial=posicionInicial.getY();
                 coordenadaInicio = new Coordenada(xInicial, yInicial);
+                listaMovimientos.insertarFinal(coordenadaInsertar);
+                listamov.add(coordenadaInsertar);
+                System.out.println("Arraylist prueba"+listamov.toString());
                 numeroMovimientos += 1;
             }
             if ((tablero[coordenadaInicio.getX()][coordenadaInicio.getY()].getPosiblesMovimientos().size() <= 0) && (isPrimeraVez() == false)) {
                 System.out.println("Se terminó el proceso");
-                return;
+                break;
             }else{
                 
                 coordenadaNueva = tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().get(0);
                 coordenadaX = coordenadaNueva.getX();
                 coordenadaY = coordenadaNueva.getY();
-                realizoMovimiento = true;
+                //realizoMovimiento = true;
                 if (tablero[posicionInicial.getX() + coordenadaX][posicionInicial.getY() + coordenadaY].isOcupada() != true) {
                    System.out.println("Tablero");
                    coordenadaInsertar.setX(coordenadaX+posicionInicial.getX());
                    coordenadaInsertar.setY(coordenadaY+posicionInicial.getY());
                    listaMovimientos.insertarFinal(coordenadaInsertar);
+                   listamov.add(coordenadaInsertar);
+                    System.out.println("Lista al insertar Valor= "+listaMovimientos.imprimirLista());
+                    System.out.println("Arraylist prueba"+listamov.toString());
                    tablero[coordenadaInsertar.getX()][coordenadaInsertar.getY()].setOcupada(true);
                    tablero[coordenadaInsertar.getX()][coordenadaInsertar.getY()].setPosicion(numeroMovimientos);
                    numeroMovimientos += 1;
-                   realizoMovimiento = false;
+                   //realizoMovimiento = false;
                    System.out.println(imprimirTablero());
                    posicionInicial.setX(coordenadaInsertar.getX());
-                   posicionInicial.setY(coordenadaInsertar.getY());       
+                   posicionInicial.setY(coordenadaInsertar.getY());    
+                }else{
+                    System.out.println("borrado");
+                    System.out.println(posicionInicial+" lista= "+tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos());
+                    tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().remove(0);
+                    System.out.println(posicionInicial+" lista= "+tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos());
                 }
-                vueltaAtras(listaMovimientos, coordenadaInsertar);
+                //vueltaAtras(listaMovimientos, coordenadaInsertar);
             }
-            if (realizoMovimiento == true) {
+            if (tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().isEmpty()) {
+                int xNueva;
+                int yNueva;
+                int xUltima;
+                int yUltima;
                 Coordenada coordenadaUltima = listaMovimientos.getUltimaCoordenada();
                 Coordenada coordenadaAnterior = listaMovimientos.getPenultimo();
-                coordenadaX = coordenadaAnterior.getX();
-                coordenadaY = coordenadaAnterior.getY();
+                xNueva = coordenadaAnterior.getX();
+                yNueva = coordenadaAnterior.getY();
+                xUltima = coordenadaUltima.getX();
+                yUltima = coordenadaUltima.getY();
 
                 tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setPosicion(-1);
                 tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setOcupada(false);
-                borrarMovientosPosibles(coordenadaUltima);
                 
+                System.err.println("Soy 20==== "+tablero[xNueva][yNueva].getPosiblesMovimientos());
                 //tablero[coordenadaX][coordenadaY].getPosiblesMovimientos().remove(0);
-                actualizarPosibles(coordenadaUltima);
-                borrarEspecificoMoviento(coordenadaX, coordenadaY, coordenadaUltima);
+                borrarEspecificoMoviento(xNueva, yNueva, coordenadaUltima);
+                
+                borrarMovientosPosibles(new Coordenada(xUltima, yUltima));
+                actualizarPosibles(new Coordenada(xUltima, yUltima));
 
                 //tablero[coordenadaX][coordenadaY].eliminarPosiblesMovimientos(coordenadaUltima);
-                System.out.println(tablero[coordenadaX][coordenadaY].getPosiblesMovimientos());
-                tablero[coordenadaX][coordenadaY].setPosicion(numeroMovimientos - 2);
-                numeroMovimientos += - 1;
-
-                try {
-                    listaMovimientos.eliminarFinal();
-                } catch (ExceptionsCaballo e) {
-                    System.out.println(e);
-                }
+                System.out.println("Movientos antes de borrar= "+tablero[xNueva][yNueva].getPosiblesMovimientos());
+                System.out.println("numero de movientos= "+numeroMovimientos);
+                numeroMovimientos--;
+                tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setPosicion(numeroMovimientos);
+                listaMovimientos.eliminarFinal();
+                listamov.remove(listamov.size()-2);
                 System.out.println("Tablero cuando retrocede");
                 System.out.println(imprimirTablero());
-                posicionInicial.setX(coordenadaAnterior.getX());
-                posicionInicial.setY(coordenadaAnterior.getY());
+                posicionInicial.setX(xNueva);
+                posicionInicial.setY(yNueva);
+                
+                System.out.println("CAmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbio========="+listaMovimientos.imprimirLista());
+                System.out.println("Arraylist prueba"+listamov.toString());
+                
                 
                 //vueltaAtras(listaMovimientos, coordenadaAnterior);
             }
         }
-        throw new ExceptionsCaballo("No hay solucion");
+        System.out.println("No hay solucion");
     }
     
     public void eliminarPrimerMovientoPosible(int x,int y){
