@@ -22,7 +22,7 @@ public class SaltoCaballo {
         Tablero tablero = new Tablero();
 //System.out.println(tablero.imprimirTablero());
         tablero.posiblesMovimientos();
-        Coordenada coordenada = new Coordenada(0, 0);
+        Coordenada coordenada = new Coordenada(0, 2);
         Lista lista = new Lista();
       
             tablero.vueltaAtras(coordenada);
