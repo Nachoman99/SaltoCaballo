@@ -314,32 +314,35 @@ public class Tablero {
                 System.out.println("Se terminó el proceso");
                 break;
             }else{
-                
-                coordenadaNueva = tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().get(0);
-                coordenadaX = coordenadaNueva.getX();
-                coordenadaY = coordenadaNueva.getY();
-                //realizoMovimiento = true;
-                if (tablero[posicionInicial.getX() + coordenadaX][posicionInicial.getY() + coordenadaY].isOcupada() != true) {
-                   System.out.println("Tablero");
-                   coordenadaInsertar.setX(coordenadaX+posicionInicial.getX());
-                   coordenadaInsertar.setY(coordenadaY+posicionInicial.getY());
-                   listaMovimientos.insertarFinal(new Coordenada(coordenadaInsertar.getX(), coordenadaInsertar.getY()));
-                   
-                    System.out.println("Lista al insertar Valor= "+listaMovimientos.imprimirLista());
-         
-                   tablero[coordenadaInsertar.getX()][coordenadaInsertar.getY()].setOcupada(true);
-                   tablero[coordenadaInsertar.getX()][coordenadaInsertar.getY()].setPosicion(numeroMovimientos);
-                   numeroMovimientos += 1;
-                   //realizoMovimiento = false;
-                   System.out.println(imprimirTablero());
-                   posicionInicial.setX(coordenadaInsertar.getX());
-                   posicionInicial.setY(coordenadaInsertar.getY());    
-                }else{
-                    System.out.println("borrado");
-                    System.out.println(posicionInicial+" lista= "+tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos());
-                    tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().remove(0);
-                    System.out.println(posicionInicial+" lista= "+tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos());
+                if (tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().isEmpty() == false) {
+                    coordenadaNueva = tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().get(0);
+                    coordenadaX = coordenadaNueva.getX();
+                    coordenadaY = coordenadaNueva.getY();
+                    //realizoMovimiento = true;
+                    if (tablero[posicionInicial.getX() + coordenadaX][posicionInicial.getY() + coordenadaY].isOcupada() != true) {
+                       System.out.println("Tablero");
+                       coordenadaInsertar.setX(coordenadaX+posicionInicial.getX());
+                       coordenadaInsertar.setY(coordenadaY+posicionInicial.getY());
+                       listaMovimientos.insertarFinal(new Coordenada(coordenadaInsertar.getX(), coordenadaInsertar.getY()));
+
+                        System.out.println("Lista al insertar Valor= "+listaMovimientos.imprimirLista());
+
+                       tablero[coordenadaInsertar.getX()][coordenadaInsertar.getY()].setOcupada(true);
+                       tablero[coordenadaInsertar.getX()][coordenadaInsertar.getY()].setPosicion(numeroMovimientos);
+                       numeroMovimientos += 1;
+                       //realizoMovimiento = false;
+                       System.out.println(imprimirTablero());
+                       posicionInicial.setX(coordenadaInsertar.getX());
+                       posicionInicial.setY(coordenadaInsertar.getY());    
+                    }else{
+                        System.out.println("borrado");
+                        System.out.println(posicionInicial+" lista= "+tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos());
+                        tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().remove(0);
+                        System.out.println(posicionInicial+" lista= "+tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos());
+                    }
                 }
+                
+                
                 //vueltaAtras(listaMovimientos, coordenadaInsertar);
             }
             if (tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().isEmpty()) {
