@@ -18,7 +18,7 @@ public class Tablero {
     private int numeroMovimientos = 1;
     private Coordenada coordenadaInicio;
     private Lista listaMovimientos=new Lista();
-    private ArrayList<Coordenada> listamov;
+
     
     /**
      * Constructor
@@ -137,11 +137,11 @@ public class Tablero {
         System.out.println("limite= "+limite);
         for (int i = 0; i < limite ; i++) {
             Coordenada cordenada1=tablero[xOriginal][yOriginal].getPosiblesMovimientos().get(i);
-            System.out.println("Xanterior= "+xOriginal+" Yanterior= "+yOriginal);
-            System.out.println("Xmovimiento= "+cordenada1.getX()+" Ymovimiento= "+cordenada1.getY());
+            //System.out.println("Xanterior= "+xOriginal+" Yanterior= "+yOriginal);
+            //System.out.println("Xmovimiento= "+cordenada1.getX()+" Ymovimiento= "+cordenada1.getY());
             if(((xOriginal+cordenada1.getX()) == cordenadaBorrar.getX())&&((yOriginal+cordenada1.getY()) == cordenadaBorrar.getY())){
                 tablero[xOriginal][yOriginal].getPosiblesMovimientos().remove(i);
-                System.out.println("se borro la posicion maaaaaaaaaaaaalaaaa");
+                //System.out.println("se borro la posicion maaaaaaaaaaaaalaaaa");
                 
             }
         }
@@ -293,7 +293,7 @@ public class Tablero {
 //    }
     
     public void vueltaAtras(Coordenada posicionInicial){
-        listamov=new ArrayList<>();
+       
         Coordenada coordenadaNueva;
         Coordenada coordenadaInsertar = new Coordenada();
         int coordenadaX=0;
@@ -306,9 +306,8 @@ public class Tablero {
                 int xInicial=posicionInicial.getX();
                 int yInicial=posicionInicial.getY();
                 coordenadaInicio = new Coordenada(xInicial, yInicial);
-                listaMovimientos.insertarFinal(coordenadaInsertar);
-                listamov.add(coordenadaInsertar);
-                System.out.println("Arraylist prueba"+listamov.toString());
+                listaMovimientos.insertarFinal(new Coordenada(coordenadaInsertar.getX(), coordenadaInsertar.getY()));
+          
                 numeroMovimientos += 1;
             }
             if ((tablero[coordenadaInicio.getX()][coordenadaInicio.getY()].getPosiblesMovimientos().size() <= 0) && (isPrimeraVez() == false)) {
@@ -324,10 +323,10 @@ public class Tablero {
                    System.out.println("Tablero");
                    coordenadaInsertar.setX(coordenadaX+posicionInicial.getX());
                    coordenadaInsertar.setY(coordenadaY+posicionInicial.getY());
-                   listaMovimientos.insertarFinal(coordenadaInsertar);
-                   listamov.add(coordenadaInsertar);
+                   listaMovimientos.insertarFinal(new Coordenada(coordenadaInsertar.getX(), coordenadaInsertar.getY()));
+                   
                     System.out.println("Lista al insertar Valor= "+listaMovimientos.imprimirLista());
-                    System.out.println("Arraylist prueba"+listamov.toString());
+         
                    tablero[coordenadaInsertar.getX()][coordenadaInsertar.getY()].setOcupada(true);
                    tablero[coordenadaInsertar.getX()][coordenadaInsertar.getY()].setPosicion(numeroMovimientos);
                    numeroMovimientos += 1;
@@ -371,14 +370,14 @@ public class Tablero {
                 numeroMovimientos--;
                 tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setPosicion(numeroMovimientos);
                 listaMovimientos.eliminarFinal();
-                listamov.remove(listamov.size()-2);
+             
                 System.out.println("Tablero cuando retrocede");
                 System.out.println(imprimirTablero());
                 posicionInicial.setX(xNueva);
                 posicionInicial.setY(yNueva);
                 
                 System.out.println("CAmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbio========="+listaMovimientos.imprimirLista());
-                System.out.println("Arraylist prueba"+listamov.toString());
+              
                 
                 
                 //vueltaAtras(listaMovimientos, coordenadaAnterior);
