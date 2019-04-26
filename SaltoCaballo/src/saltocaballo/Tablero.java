@@ -134,11 +134,11 @@ public class Tablero {
         
         
         int limite= tablero[xOriginal][yOriginal].getPosiblesMovimientos().size();
-        System.out.println("limite= "+limite);
+        //System.out.println("limite= "+limite);
         if(limite>=0){  
              for (int i = 0; i < limite ; i++) {
-                 System.out.println("Porque no sirve=" +tablero[xOriginal][yOriginal].getPosiblesMovimientos());
-                 System.out.println("I= "+i );
+                 //System.out.println("Porque no sirve=" +tablero[xOriginal][yOriginal].getPosiblesMovimientos());
+                 //System.out.println("I= "+i );
                  Coordenada cordenada1=tablero[xOriginal][yOriginal].getPosiblesMovimientos().get(i);
                  //System.out.println("Xanterior= "+xOriginal+" Yanterior= "+yOriginal);
                  //System.out.println("Xmovimiento= "+cordenada1.getX()+" Ymovimiento= "+cordenada1.getY());
@@ -321,7 +321,7 @@ public class Tablero {
                 numeroMovimientos += 1;
             }
             if ((tablero[coordenadaInicio.getX()][coordenadaInicio.getY()].getPosiblesMovimientos().size() <= 0) && (isPrimeraVez() == false)) {
-                System.out.println("Se terminó el proceso");
+                System.out.println("No hay solucion");
                 break;
             }else{
                 if(tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().isEmpty() == false){
@@ -330,25 +330,25 @@ public class Tablero {
                     coordenadaY = coordenadaNueva.getY();
                     //realizoMovimiento = true;
                     if (tablero[posicionInicial.getX() + coordenadaX][posicionInicial.getY() + coordenadaY].isOcupada() != true) {
-                       System.out.println("Tablero");
+                       //System.out.println("Tablero");
                        coordenadaInsertar.setX(coordenadaX+posicionInicial.getX());
                        coordenadaInsertar.setY(coordenadaY+posicionInicial.getY());
                        listaMovimientos.insertarFinal(new Coordenada(coordenadaInsertar.getX(), coordenadaInsertar.getY()));
 
-                        System.out.println("Lista al insertar Valor= "+listaMovimientos.imprimirLista());
+                        //System.out.println("Lista al insertar Valor= "+listaMovimientos.imprimirLista());
 
                        tablero[coordenadaInsertar.getX()][coordenadaInsertar.getY()].setOcupada(true);
                        tablero[coordenadaInsertar.getX()][coordenadaInsertar.getY()].setPosicion(numeroMovimientos);
                        numeroMovimientos += 1;
                        //realizoMovimiento = false;
-                       System.out.println(imprimirTablero());
+                       //System.out.println(imprimirTablero());
                        posicionInicial.setX(coordenadaInsertar.getX());
                        posicionInicial.setY(coordenadaInsertar.getY());    
                     }else{
-                        System.out.println("borrado");
-                        System.out.println(posicionInicial+" lista= "+tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos());
+                        //System.out.println("borrado");
+                        //System.out.println(posicionInicial+" lista= "+tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos());
                         tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().remove(0);
-                        System.out.println(posicionInicial+" lista= "+tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos());
+                       // System.out.println(posicionInicial+" lista= "+tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos());
                     }
                     
                 }
@@ -381,8 +381,8 @@ public class Tablero {
                 tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setOcupada(false);
 
                 //tablero[coordenadaX][coordenadaY].eliminarPosiblesMovimientos(coordenadaUltima);
-                System.out.println("Movientos antes de borrar= "+tablero[xNueva][yNueva].getPosiblesMovimientos());
-                System.out.println("numero de movientos= "+numeroMovimientos);
+                //System.out.println("Movientos antes de borrar= "+tablero[xNueva][yNueva].getPosiblesMovimientos());
+                //System.out.println("numero de movientos= "+numeroMovimientos);
                 numeroMovimientos--;
                 //tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setPosicion(numeroMovimientos);
                 tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setOcupada(false);
@@ -390,12 +390,12 @@ public class Tablero {
                 
                 listaMovimientos.eliminarFinal();
              
-                System.out.println("Tablero cuando retrocede");
-                System.out.println(imprimirTablero());
+                //System.out.println("Tablero cuando retrocede");
+                //System.out.println(imprimirTablero());
                 posicionInicial.setX(xNueva);
                 posicionInicial.setY(yNueva);
                 
-                System.out.println("CAmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbio========="+listaMovimientos.imprimirLista());
+                //System.out.println("CAmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbio========="+listaMovimientos.imprimirLista());
               
                 
                 
