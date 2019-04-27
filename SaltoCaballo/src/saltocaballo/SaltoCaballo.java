@@ -55,14 +55,15 @@ public class SaltoCaballo {
                     + "6) Salir del programa");
                     int opcion=-1;
                     if (opcionString == null) {
-                        System.out.println("Hola");
-                        salirX = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir?");
-                        System.out.println(salirX);
+                        salirX = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir?", "SALIR", JOptionPane.YES_NO_OPTION);
+                        if (salirX == 0) {
+                            salir = true;
+                        }else{
+                            salir = false;
+                        }
                     }else{
                         opcion = Integer.parseInt(opcionString);
-                    }
-                        
-                //opcion = 
+                    }   
                 if (opcionString != null && opcion > 0 && opcion <= 6) {
                     switch(opcion){
                         case 1:
@@ -138,11 +139,7 @@ public class SaltoCaballo {
                             JOptionPane.showMessageDialog(null, "Toco la X");
                             salir = true;
                             break;
-                    }
-                    
-                }else if(opcionString == null){
-                    salirX = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir?");
-                    System.out.println(salirX);
+                    }  
                 }    
             }
         } catch (ExceptionsCaballo e) {
