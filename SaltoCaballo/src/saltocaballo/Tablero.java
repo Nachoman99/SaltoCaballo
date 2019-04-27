@@ -465,4 +465,23 @@ public class Tablero {
             return false;
         }
     }
+    
+    public Coordenada pedirCoordenada(String x, String y, int tamaño) throws ExceptionsCaballo{
+        Coordenada coordenadaInicial;
+        int coordenadaX;
+        int coordenadaY;
+        if (isNumero(x) == true && isNumero(y) == true) {
+            coordenadaX = Integer.parseInt(x);
+            coordenadaY = Integer.parseInt(y);
+            if (coordenadaX < 0 || coordenadaY < 0) {
+                throw new ExceptionsCaballo("La coordenada está fuera del tablero");
+            }else if(coordenadaX >= tamaño || coordenadaY >= tamaño){
+                throw new ExceptionsCaballo("La coordenada está fuera del tablero");
+            }else{
+                return coordenadaInicial = new Coordenada(coordenadaX, coordenadaY);
+            }
+        }else{
+            throw new ExceptionsCaballo("Las coordenadas tienen que ser enteros");
+        }
+    }
 }

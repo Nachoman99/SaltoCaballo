@@ -87,24 +87,12 @@ public class SaltoCaballo {
                         if (continuar == true) {
                             String str = JOptionPane.showInputDialog("Digite la coordenada X a iniciar");
                             String str2 = JOptionPane.showInputDialog("Digite la coordenada Y a iniciar");
-                            if (tablero.isNumero(str) == true && tablero.isNumero(str2) == true) {
-                                coordenadaX = Integer.parseInt(str);
-                                coordenadaY = Integer.parseInt(str2);
-                                if (coordenadaX < 0 || coordenadaY < 0) {
-                                    throw new ExceptionsCaballo("La coordenada está fuera del tablero");
-                                }else if(coordenadaX >= tamaño || coordenadaY >= tamaño){
-                                    throw new ExceptionsCaballo("La coordenada está fuera del tablero");
-                                }else{
-                                    coordenadas = true;
-                                    coordenadaInicial = new Coordenada(coordenadaX, coordenadaY);
-                                    try {
-                                        tablero = new Tablero(tamaño);
-                                    } catch (ExceptionsCaballo e) {
-                                        JOptionPane.showMessageDialog(null, e.getMessage());
-                                    }  
-                                }
-                            }else{
-                                throw new ExceptionsCaballo("Sólo puede ingresar enteros a la coordenada");
+                            try {
+                                coordenadaInicial = tablero.pedirCoordenada(str, str2, tamaño);
+                                coordenadas = true;
+                                tablero = new Tablero(tamaño);
+                            } catch (ExceptionsCaballo e) {
+                                JOptionPane.showMessageDialog(null, e.getMessage());
                             }
                         }else{
                         JOptionPane.showMessageDialog(null, "Por favor digite el tamaño de la matriz primero");
