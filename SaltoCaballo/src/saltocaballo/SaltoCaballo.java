@@ -53,12 +53,15 @@ public class SaltoCaballo {
                     + "4) Mostrar el tiempo de duración del cálculo del recorrido \n"
                     + "5) Imprimir la matriz y el recorrido \n"
                     + "6) Salir del programa");
-                    int opcion = Integer.parseInt(opcionString);
+                    int opcion=-1;
                     if (opcionString == null) {
                         System.out.println("Hola");
-                    salirX = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir?");
-                    System.out.println(salirX);
+                        salirX = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir?");
+                        System.out.println(salirX);
+                    }else{
+                        opcion = Integer.parseInt(opcionString);
                     }
+                        
                 //opcion = 
                 if (opcionString != null && opcion > 0 && opcion <= 6) {
                     switch(opcion){
@@ -131,7 +134,12 @@ public class SaltoCaballo {
                             JOptionPane.showMessageDialog(null, "Hasta pronto");
                             salir = true;
                             break;
+                        default:
+                            JOptionPane.showMessageDialog(null, "Toco la X");
+                            salir = true;
+                            break;
                     }
+                    
                 }else if(opcionString == null){
                     salirX = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir?");
                     System.out.println(salirX);
