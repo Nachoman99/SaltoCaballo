@@ -34,14 +34,13 @@ public class SaltoCaballo {
         boolean proceso = false;
         boolean coordenadas = false;
         Coordenada coordenadaInicial = new Coordenada();
+        boolean solucion = true;
         
         
         
         /*
         Actuales problemas:
         1. Al usar las excepciones entonces se sale del programa, no continúa.
-        3. A la hora de tocar X o CANCELAR tira error.
-        4. A la hora de ingresar una coordenada que no tiene solución tira nullpointer en imprimir(Opción 5)
         6. Si le doy enter a la primer ventana del menú sin meter ningún valor tira error
         */
         try {
@@ -53,7 +52,8 @@ public class SaltoCaballo {
                     + "4) Mostrar el tiempo de duración del cálculo del recorrido \n"
                     + "5) Imprimir la matriz y el recorrido \n"
                     + "6) Salir del programa");
-                    int opcion=-1;
+                int opcion=-1;
+                if (opcionString == null || opcionString.equals("")) {
                     if (opcionString == null) {
                         salirX = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir?", "SALIR", JOptionPane.YES_NO_OPTION);
                         if (salirX == 0) {
@@ -62,8 +62,12 @@ public class SaltoCaballo {
                             salir = false;
                         }
                     }else{
-                        opcion = Integer.parseInt(opcionString);
-                    }   
+                        JOptionPane.showMessageDialog(null, "Por favor ingrese algún valor");
+                        salir = false;
+                    }
+                }else{
+                    opcion = Integer.parseInt(opcionString);
+                }   
                 if (opcionString != null && opcion > 0 && opcion <= 6) {
                     switch(opcion){
                         case 1:
@@ -105,7 +109,7 @@ public class SaltoCaballo {
                                 tablero = new Tablero(tamaño);
                                 tablero.posiblesMovimientos();
                                 t1 = System.nanoTime();
-                                tablero.vueltaAtras(coordenadaInicial);
+                                solucion = tablero.vueltaAtras(coordenadaInicial);
                                 t2 = System.nanoTime();
                                 tiempo = (double) (t2 - t1) / 1000000000;
                                 proceso = true;
@@ -125,8 +129,12 @@ public class SaltoCaballo {
                         case 5:
                    // tablero = new Tablero(tamaño);
                             if (proceso == true) {
-                                JOptionPane.showMessageDialog(null, "El recorrido es: \n" + tablero.getListaMovimientos());
-                                JOptionPane.showMessageDialog(null, "La matriz resuelta es: \n\n" + tablero.imprimirTablero());
+                                if (solucion == true) {
+                                    JOptionPane.showMessageDialog(null, "El recorrido es: \n" + tablero.getListaMovimientos());
+                                    JOptionPane.showMessageDialog(null, "La matriz resuelta es: \n\n" + tablero.imprimirTablero());
+                                }else{
+                                    JOptionPane.showMessageDialog(null, "La coordenada elegida no tiene solución");
+                                }  
                             }else{
                                 JOptionPane.showMessageDialog(null, "Por favor antes de mostrar el tablero elija la opción 3");
                             }
