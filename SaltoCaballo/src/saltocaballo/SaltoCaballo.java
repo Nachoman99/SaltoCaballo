@@ -70,6 +70,7 @@ public class SaltoCaballo {
             if (opcionString != null && opcion > 0 && opcion <= 6) {
                 switch(opcion){
                     case 1:
+                        continuar = false;
                         tamañoString = JOptionPane.showInputDialog("Digite el tamaño de la matriz");
                         if (tamañoString != null) {
                             tamaño = Integer.parseInt(tamañoString);
@@ -84,7 +85,10 @@ public class SaltoCaballo {
                         }
                     break;
                     case 2:
+                        proceso = false;
+                        coordenadas = false;
                         if (continuar == true) {
+                            coordenadas = false;
                             String str = JOptionPane.showInputDialog("Digite la coordenada X a iniciar");
                             String str2 = JOptionPane.showInputDialog("Digite la coordenada Y a iniciar");
                             try {
@@ -94,9 +98,9 @@ public class SaltoCaballo {
                             } catch (ExceptionsCaballo e) {
                                 JOptionPane.showMessageDialog(null, e.getMessage());
                             }
+                            
                         }else{
                         JOptionPane.showMessageDialog(null, "Por favor digite el tamaño de la matriz primero");
-                        coordenadas = false;
                         }
                         break;
                     case 3:
