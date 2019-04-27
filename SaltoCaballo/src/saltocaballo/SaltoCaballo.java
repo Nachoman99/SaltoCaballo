@@ -18,19 +18,23 @@ public class SaltoCaballo {
      * Main
      */
     public static void main(String[] args) {
-
+        long t1;
+        long t2;
+        boolean solucion;
         Tablero tablero = new Tablero();
 //System.out.println(tablero.imprimirTablero());
         tablero.posiblesMovimientos();
         Coordenada coordenada = new Coordenada(0, 2);
-        Lista lista = new Lista();
-      
-            tablero.vueltaAtras(coordenada);
+        t1 = System.nanoTime();
+        solucion=tablero.vueltaAtras(coordenada);
+        t2 = System.nanoTime();
+        System.out.println("\nTiempo en procesar(En nanosegundos): " + (t2 - t1));
         
-            
-        
-        
+        double conversion = (double) (t2 - t1) / 1000000000;
+        System.out.println("Tiempo en procesar(En segundos): "+conversion);
+        System.out.println("EL tablero tuvo solucion= "+solucion);
         System.out.println(tablero.imprimirTablero());
+ 
         //tablero.posiblesMovimientosEspecifico(3, 0);
 //        System.out.println("Esta lista= "+tablero.tableroListo());
   //      tablero.ponerTrue();

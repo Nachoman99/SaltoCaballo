@@ -302,7 +302,7 @@ public class Tablero {
 //    }
     
     
- public void vueltaAtras(Coordenada posicionInicial){
+ public boolean vueltaAtras(Coordenada posicionInicial){
        
         Coordenada coordenadaNueva;
         Coordenada coordenadaInsertar = new Coordenada();
@@ -322,7 +322,8 @@ public class Tablero {
             }
             if ((tablero[coordenadaInicio.getX()][coordenadaInicio.getY()].getPosiblesMovimientos().size() <= 0) && (isPrimeraVez() == false)) {
                 System.out.println("No hay solucion");
-                break;
+                return false;
+               
             }else{
                 if(tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().isEmpty() == false){
                         coordenadaNueva = tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().get(0);
@@ -403,6 +404,7 @@ public class Tablero {
             }
         }
         System.out.println("Resultado");
+        return true;
     }
 
 
