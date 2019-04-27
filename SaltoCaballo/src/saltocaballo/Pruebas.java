@@ -14,10 +14,11 @@ import javax.swing.JOptionPane;
 public class Pruebas {
     public static void main(String[] args) {
         
-        while (menu() != true) {            
-            menu();
+        while (menu() != true) {
+            System.out.println("Adios");
         }
     }
+    
     public static boolean menu(){
         int salirX;
         int tamaño = 0;
