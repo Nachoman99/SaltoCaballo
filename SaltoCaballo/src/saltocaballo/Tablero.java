@@ -8,6 +8,7 @@ package saltocaballo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,11 +21,19 @@ public class Tablero {
     private Lista listaMovimientos=new Lista();
 
     
+    public Tablero() {
+
+    }
+    
     /**
      * Constructor
      */
-    public Tablero() {
-        tablero = new Celda[5][5];
+    public Tablero(int tamaño) {
+        if (tamaño < 5) {
+            JOptionPane.showMessageDialog(null, "El tamaño del tablero no puede ser menor a 5");
+        }else{
+            tablero = new Celda[tamaño][tamaño];
+        }
     }
 
     /**
