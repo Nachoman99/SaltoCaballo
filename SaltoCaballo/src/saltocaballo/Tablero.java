@@ -60,6 +60,9 @@ public class Tablero {
         this.numeroMovimientos = numeroMovimientos;
     }
 
+    public String getListaMovimientos(){
+        return listaMovimientos.imprimirLista();
+    }
     /**
      * To String
      * @return String

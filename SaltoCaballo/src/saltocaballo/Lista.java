@@ -13,7 +13,7 @@ public class Lista {
     private Nodo primero = null;
     private Nodo ultimo = null;
     private Nodo temporal = null;
-
+    private int tamaño;
     /**
      * Constructor vacío
      */
@@ -96,7 +96,9 @@ public class Lista {
         if (ultimo == null) {
             primero = nuevo;
             ultimo = primero;
+            tamaño++;
         }else{
+            tamaño++;
             nuevo.setSig(primero);
             primero.setAnt(nuevo);
             primero = nuevo;
@@ -112,7 +114,9 @@ public class Lista {
         if (ultimo == null) {
             ultimo = nuevo;
             primero = ultimo;
+            tamaño++;
         }else{
+            tamaño++;
             nuevo.setAnt(ultimo);
             ultimo.setSig(nuevo);
             ultimo = nuevo;
@@ -132,10 +136,12 @@ public class Lista {
             valorRet = primero.getDato();
             primero = null;
             ultimo = null;
+            tamaño--;
         }else{
             valorRet = primero.getDato();
             primero = primero.getSig();
             primero.setAnt(null);
+            tamaño--;
         }
         return valorRet;
     }
@@ -153,12 +159,14 @@ public class Lista {
             valorRet = primero.getDato();
             ultimo = null;
             primero = null;
+            tamaño--;
             return true;   
         }else{
             valorRet = ultimo.getDato();
             ultimo = ultimo.getAnt();
             ultimo.getSig().setAnt(null);
             ultimo.setSig(null);
+            tamaño--;
         }
         return true;
     }
@@ -174,6 +182,7 @@ public class Lista {
             primero = null;
             ultimo = null;
             temporal = null;
+            tamaño = 0;
         }
     }
     //Revisar método
@@ -196,6 +205,7 @@ public class Lista {
             eliminarFinal();
             return valorRet;
         }else{
+            tamaño--;
             temporal = primero;
             while (temporal.getSig() != null) {                
                 if (temporal.getDato() == dato) {
@@ -228,6 +238,7 @@ public class Lista {
             eliminarInicio();
             return valorRet;
         }else{
+            tamaño--;
             temporal = primero;
             while (primero.getSig() != null) {                
                 if (count == index) {
@@ -283,4 +294,10 @@ public class Lista {
     public Coordenada getAntePenultimo(){
         return ultimo.getAnt().getAnt().getDato();
     }
+
+    public int getTamaño() {
+        return tamaño;
+    }
+    
+    
 }

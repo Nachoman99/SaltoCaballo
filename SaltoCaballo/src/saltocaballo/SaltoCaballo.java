@@ -35,9 +35,6 @@ public class SaltoCaballo {
 //        System.out.println("EL tablero tuvo solucion= "+solucion);
 //        System.out.println(tablero.imprimirTablero());
 
-
-
-
         int tamaño;
         boolean salir = false;
         Tablero tablero = new Tablero();
@@ -77,6 +74,7 @@ public class SaltoCaballo {
                     JOptionPane.showMessageDialog(null, "La duración del recorrido en segundos es: " + tiempo);
                     break;
                 case 5:
+                    JOptionPane.showMessageDialog(null, "El recorrido es: " + tablero.getListaMovimientos());
                     JOptionPane.showMessageDialog(null, "La matriz resuelta es: \n\n" + tablero.imprimirTablero());
                     break;
                 case 6:
