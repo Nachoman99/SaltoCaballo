@@ -39,6 +39,7 @@ public class SaltoCaballo {
         1. Al usar las excepciones entonces se sale del programa, no continúa.
         2. El usuariono puede hacer uso del programa 2 veces porque tira el mismo resultado.
         3. A la hora de tocar X o CANCELAR tira error.
+        4. A la hora de ingresar una coordenada que no tiene solución tira nullpointer en imprimir(Opción 5)
         */
         try {
             while (salir == false) {
@@ -71,6 +72,7 @@ public class SaltoCaballo {
                             }else{
                                 coordenadas = true;
                                 coordenadaInicial = new Coordenada(coordenadaX, coordenadaY);
+                                tablero = new Tablero(tamaño);
                             }
                         }else{
                             throw new ExceptionsCaballo("Sólo puede ingresar enteros a la coordenada");
