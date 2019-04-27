@@ -40,6 +40,7 @@ public class SaltoCaballo {
         2. El usuariono puede hacer uso del programa 2 veces porque tira el mismo resultado.
         3. A la hora de tocar X o CANCELAR tira error.
         4. A la hora de ingresar una coordenada que no tiene solución tira nullpointer en imprimir(Opción 5)
+        6. Si le doy enter a la primer ventana del menú sin meter ningún valor tira error
         */
         try {
             while (salir == false) {
@@ -84,6 +85,7 @@ public class SaltoCaballo {
                     break;
                 case 3:
                     if (coordenadas == true) {
+                        tablero = new Tablero(tamaño);
                         tablero.posiblesMovimientos();
                         t1 = System.nanoTime();
                         tablero.vueltaAtras(coordenadaInicial);
@@ -105,6 +107,7 @@ public class SaltoCaballo {
                     }
                     break;
                 case 5:
+                   // tablero = new Tablero(tamaño);
                     if (proceso == true) {
                         JOptionPane.showMessageDialog(null, "El recorrido es: \n" + tablero.getListaMovimientos());
                         JOptionPane.showMessageDialog(null, "La matriz resuelta es: \n\n" + tablero.imprimirTablero());
