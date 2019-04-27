@@ -333,6 +333,7 @@ public class Tablero {
                 numeroMovimientos += 1;
             }
             if ((tablero[coordenadaInicio.getX()][coordenadaInicio.getY()].getPosiblesMovimientos().size() <= 0) && (isPrimeraVez() == false)) {
+                listaMovimientos.eliminarFinal();
                 System.out.println("No hay solucion");
                 return false;
                
@@ -492,7 +493,7 @@ public class Tablero {
         String print = "";
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
-                print += tablero[i][j].getPosicion() + " | ";
+                print +=String.format("%02d", tablero[i][j].getPosicion()) + " | ";
             }
             print += "\n";
         }
