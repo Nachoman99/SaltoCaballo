@@ -36,6 +36,8 @@ public class SaltoCaballo {
 //        System.out.println(tablero.imprimirTablero());
 
 
+
+
         int tamaño;
         boolean salir = false;
         Tablero tablero = new Tablero();
