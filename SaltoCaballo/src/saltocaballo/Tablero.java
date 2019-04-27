@@ -18,7 +18,7 @@ public class Tablero {
     private Celda[][] tablero;
     private int numeroMovimientos = 1;
     private Coordenada coordenadaInicio;
-    private Lista listaMovimientos=new Lista();
+    private Lista listaMovimientos = new Lista();
 
     
     public Tablero() {
@@ -28,9 +28,9 @@ public class Tablero {
     /**
      * Constructor
      */
-    public Tablero(int tamaño) {
+    public Tablero(int tamaño) throws ExceptionsCaballo{
         if (tamaño < 5) {
-            JOptionPane.showMessageDialog(null, "El tamaño del tablero no puede ser menor a 5");
+            throw new ExceptionsCaballo("El tamaño no puede ser menor a 5");
         }else{
             tablero = new Celda[tamaño][tamaño];
         }
@@ -180,50 +180,47 @@ public class Tablero {
         int i=coordendaActualizar.getX();
         int j = coordendaActualizar.getY();
         tablero[i][j] = new Celda(-1, new  ArrayList<>(), false);
-                if(i+-2>=0){
-                    if(j+-1>=0){
-                        Coordenada movimiento5 = new Coordenada(-2, -1);
-                        tablero[i][j].añadirPosiblesMovimientos(movimiento5);
-                    }
-                    if(j+1<tablero.length){
-                        Coordenada movimiento6 = new Coordenada(-2, +1);
-                        tablero[i][j].añadirPosiblesMovimientos(movimiento6);
-                    }
-                }
-  
-                if(i+-1>=0){
-                    if(j+-2>=0){
-                        Coordenada movimiento3 = new Coordenada(-1, -2);
-                        tablero[i][j].añadirPosiblesMovimientos(movimiento3);
-                    }
-                    if(j+2<tablero.length){
-                        Coordenada movimiento4 = new Coordenada(-1, +2);
-                        tablero[i][j].añadirPosiblesMovimientos(movimiento4);
-                    }
-                }
-                
-                if(i+1<tablero.length){
-                    if(j+-2>=0){
-                        Coordenada movimiento1 = new Coordenada(+1, -2);
-                        tablero[i][j].añadirPosiblesMovimientos(movimiento1);
-                    }
-                    if(j+2<tablero.length){
-                        Coordenada movimiento2 = new Coordenada(+1, +2);
-                        tablero[i][j].setPosicion(0);
-                        tablero[i][j].añadirPosiblesMovimientos(movimiento2);
-                    }
-                }
-        
-                if(i+2<tablero.length){
-                    if (j+1<tablero.length) {
-                        Coordenada movimiento7 = new Coordenada(+2, +1);
-                        tablero[i][j].añadirPosiblesMovimientos(movimiento7);
-                    }
-                    if(j-1>=0){
-                        Coordenada movimiento8 = new Coordenada(+2, -1);
-                        tablero[i][j].añadirPosiblesMovimientos(movimiento8);
-                    }
-                }  
+        if(i+-2>=0){
+            if(j+-1>=0){
+                Coordenada movimiento5 = new Coordenada(-2, -1);
+                tablero[i][j].añadirPosiblesMovimientos(movimiento5);
+            }
+            if(j+1<tablero.length){
+                Coordenada movimiento6 = new Coordenada(-2, +1);
+                tablero[i][j].añadirPosiblesMovimientos(movimiento6);
+            }
+        }
+        if(i+-1>=0){
+            if(j+-2>=0){
+                Coordenada movimiento3 = new Coordenada(-1, -2);
+                tablero[i][j].añadirPosiblesMovimientos(movimiento3);
+            }
+            if(j+2<tablero.length){
+            Coordenada movimiento4 = new Coordenada(-1, +2);
+            tablero[i][j].añadirPosiblesMovimientos(movimiento4);
+            }
+        }             
+        if(i+1<tablero.length){
+            if(j+-2>=0){
+                Coordenada movimiento1 = new Coordenada(+1, -2);
+                tablero[i][j].añadirPosiblesMovimientos(movimiento1);
+            }
+            if(j+2<tablero.length){
+            Coordenada movimiento2 = new Coordenada(+1, +2);
+            tablero[i][j].setPosicion(0);
+            tablero[i][j].añadirPosiblesMovimientos(movimiento2);
+            }
+        }
+        if(i+2<tablero.length){
+            if (j+1<tablero.length) {
+                Coordenada movimiento7 = new Coordenada(+2, +1);
+                tablero[i][j].añadirPosiblesMovimientos(movimiento7);
+            }
+            if(j-1>=0){
+                Coordenada movimiento8 = new Coordenada(+2, -1);
+                tablero[i][j].añadirPosiblesMovimientos(movimiento8);
+            }
+        }  
     }
     
     
@@ -314,13 +311,11 @@ public class Tablero {
 //    }
     
     
- public boolean vueltaAtras(Coordenada posicionInicial){
-       
+ public boolean vueltaAtras(Coordenada posicionInicial) throws ExceptionsCaballo{
         Coordenada coordenadaNueva;
         Coordenada coordenadaInsertar = new Coordenada();
         int coordenadaX=0;
         int coordenadaY=0;
-        boolean realizoMovimiento;
         while (tableroListo() == false) { 
             if (isPrimeraVez() == true) {
                 tablero[posicionInicial.getX()][posicionInicial.getY()].setOcupada(true);
@@ -329,45 +324,30 @@ public class Tablero {
                 int yInicial=posicionInicial.getY();
                 coordenadaInicio = new Coordenada(xInicial, yInicial);
                 listaMovimientos.insertarFinal(new Coordenada(coordenadaInicio.getX(), coordenadaInicio.getY()));
-          
                 numeroMovimientos += 1;
             }
             if ((tablero[coordenadaInicio.getX()][coordenadaInicio.getY()].getPosiblesMovimientos().size() <= 0) && (isPrimeraVez() == false)) {
                 listaMovimientos.eliminarFinal();
                 System.out.println("No hay solucion");
                 return false;
-               
             }else{
                 if(tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().isEmpty() == false){
-                        coordenadaNueva = tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().get(0);
+                    coordenadaNueva = tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().get(0);
                     coordenadaX = coordenadaNueva.getX();
                     coordenadaY = coordenadaNueva.getY();
-                    //realizoMovimiento = true;
                     if (tablero[posicionInicial.getX() + coordenadaX][posicionInicial.getY() + coordenadaY].isOcupada() != true) {
-                       //System.out.println("Tablero");
                        coordenadaInsertar.setX(coordenadaX+posicionInicial.getX());
                        coordenadaInsertar.setY(coordenadaY+posicionInicial.getY());
                        listaMovimientos.insertarFinal(new Coordenada(coordenadaInsertar.getX(), coordenadaInsertar.getY()));
-
-                        //System.out.println("Lista al insertar Valor= "+listaMovimientos.imprimirLista());
-
                        tablero[coordenadaInsertar.getX()][coordenadaInsertar.getY()].setOcupada(true);
                        tablero[coordenadaInsertar.getX()][coordenadaInsertar.getY()].setPosicion(numeroMovimientos);
                        numeroMovimientos += 1;
-                       //realizoMovimiento = false;
-                       //System.out.println(imprimirTablero());
                        posicionInicial.setX(coordenadaInsertar.getX());
                        posicionInicial.setY(coordenadaInsertar.getY());    
                     }else{
-                        //System.out.println("borrado");
-                        //System.out.println(posicionInicial+" lista= "+tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos());
                         tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().remove(0);
-                       // System.out.println(posicionInicial+" lista= "+tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos());
                     }
-                    
                 }
-                
-                //vueltaAtras(listaMovimientos, coordenadaInsertar);
             }
             if (tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().isEmpty()) {
                 int xNueva;
@@ -380,43 +360,20 @@ public class Tablero {
                 yNueva = coordenadaAnterior.getY();
                 xUltima = coordenadaUltima.getX();
                 yUltima = coordenadaUltima.getY();
-
-                
-    
                 if(tablero[xNueva][yNueva].getPosiblesMovimientos().isEmpty()==false){
                     borrarEspecificoMoviento(xNueva, yNueva, coordenadaUltima);
-                    //tablero[xNueva][yNueva].getPosiblesMovimientos().remove(0);
                 }
-               
-                
-                //borrarMovientosPosibles(new Coordenada(xUltima, yUltima));
                 actualizarPosibles(new Coordenada(xUltima, yUltima));
-                tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setPosicion(-1);
+                tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setPosicion(0);
                 tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setOcupada(false);
-
-                //tablero[coordenadaX][coordenadaY].eliminarPosiblesMovimientos(coordenadaUltima);
-                //System.out.println("Movientos antes de borrar= "+tablero[xNueva][yNueva].getPosiblesMovimientos());
-                //System.out.println("numero de movientos= "+numeroMovimientos);
                 numeroMovimientos--;
-                //tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setPosicion(numeroMovimientos);
                 tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setOcupada(false);
-                tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setPosicion(-1);
-                
+                tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setPosicion(0);
                 listaMovimientos.eliminarFinal();
-             
-                //System.out.println("Tablero cuando retrocede");
-                //System.out.println(imprimirTablero());
                 posicionInicial.setX(xNueva);
                 posicionInicial.setY(yNueva);
-                
-                //System.out.println("CAmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbio========="+listaMovimientos.imprimirLista());
-              
-                
-                
-                //vueltaAtras(listaMovimientos, coordenadaAnterior);
             }
         }
-        System.out.println("Resultado");
         return true;
     }
 
@@ -498,5 +455,14 @@ public class Tablero {
             print += "\n";
         }
         return print;
+    }
+    
+    public boolean isNumero(String cadena){
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

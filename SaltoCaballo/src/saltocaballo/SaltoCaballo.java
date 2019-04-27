@@ -18,24 +18,8 @@ public class SaltoCaballo {
      * Main
      */
     public static void main(String[] args) {
-//        long t1;
-//        long t2;
-//        boolean solucion;
-//        Tablero tablero = new Tablero();
-//        //System.out.println(tablero.imprimirTablero());
-//        tablero.posiblesMovimientos();
-//        Coordenada coordenada = new Coordenada(0, 2);
-//        t1 = System.nanoTime();
-//        solucion=tablero.vueltaAtras(coordenada);
-//        t2 = System.nanoTime();
-//        System.out.println("\nTiempo en procesar(En nanosegundos): " + (t2 - t1));
-//        
-//        double conversion = (double) (t2 - t1) / 1000000000;
-//        System.out.println("Tiempo en procesar(En segundos): "+conversion);
-//        System.out.println("EL tablero tuvo solucion= "+solucion);
-//        System.out.println(tablero.imprimirTablero());
 
-        int tamaño;
+        int tamaño = 0;
         boolean salir = false;
         Tablero tablero = new Tablero();
         int coordenadaX;
@@ -43,39 +27,88 @@ public class SaltoCaballo {
         long t1;
         long t2;
         double tiempo = 0;
+        boolean continuar = false;
+        boolean proceso = false;
+        boolean coordenadas = false;
         Coordenada coordenadaInicial = new Coordenada();
-        while (salir == false) {
+        
+        
+        
+        /*
+        Actuales problemas:
+        1. Al usar las excepciones entonces se sale del programa, no continúa.
+        2. El usuariono puede hacer uso del programa 2 veces porque tira el mismo resultado.
+        3. A la hora de tocar X o CANCELAR tira error.
+        */
+        try {
+            while (salir == false) {
             int opcion;
+            
             opcion = Integer.parseInt(JOptionPane.showInputDialog("Por favor elija una de las siguientes opciones: \n"
                     + "1) Insertar tamaño de la matriz \n"
-                    + "2) Elegir coordenadas de salida \n"
+                    + "2) Elegir coordenadas de inicio \n"
                     + "3) Calcular recorrido \n"
                     + "4) Mostrar el tiempo de duración del cálculo del recorrido \n"
                     + "5) Imprimir la matriz y el recorrido \n"
                     + "6) Salir del programa"));
             switch(opcion){
                 case 1:
+                    continuar = true;
                     tamaño = Integer.parseInt(JOptionPane.showInputDialog("Digite el tamaño de la matriz"));
                     tablero = new Tablero(tamaño);
                     break;
                 case 2:
-                    coordenadaX = Integer.parseInt(JOptionPane.showInputDialog("Digite la coordenada X a iniciar"));
-                    coordenadaY = Integer.parseInt(JOptionPane.showInputDialog("Digite la coordenada Y a iniciar"));
-                    coordenadaInicial = new Coordenada(coordenadaX, coordenadaY);
+                    if (continuar == true) {
+                        String str = JOptionPane.showInputDialog("Digite la coordenada X a iniciar");
+                        String str2 = JOptionPane.showInputDialog("Digite la coordenada Y a iniciar");
+                        if (tablero.isNumero(str) == true && tablero.isNumero(str2) == true) {
+                            coordenadaX = Integer.parseInt(str);
+                            coordenadaY = Integer.parseInt(str2);
+                            if (coordenadaX < 0 || coordenadaY < 0) {
+                                throw new ExceptionsCaballo("La coordenada está fuera del tablero");
+                            }else if(coordenadaX >= tamaño || coordenadaY >= tamaño){
+                                throw new ExceptionsCaballo("La coordenada está fuera del tablero");
+                            }else{
+                                coordenadas = true;
+                                coordenadaInicial = new Coordenada(coordenadaX, coordenadaY);
+                            }
+                        }else{
+                            throw new ExceptionsCaballo("Sólo puede ingresar enteros a la coordenada");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Por favor digite el tamaño de la matriz primero");
+                        coordenadas = false;
+                    }
                     break;
                 case 3:
-                    tablero.posiblesMovimientos();
-                    t1 = System.nanoTime();
-                    tablero.vueltaAtras(coordenadaInicial);
-                    t2 = System.nanoTime();
-                    tiempo = (double) (t2 - t1) / 1000000000;
+                    if (coordenadas == true) {
+                        tablero.posiblesMovimientos();
+                        t1 = System.nanoTime();
+                        tablero.vueltaAtras(coordenadaInicial);
+                        t2 = System.nanoTime();
+                        tiempo = (double) (t2 - t1) / 1000000000;
+                        proceso = true;
+                    }else{
+                        proceso = false;
+                        JOptionPane.showMessageDialog(null, "Por favor digite las coordenadas de inicio primero");
+                    }
+                    
                     break;
                 case 4:
-                    JOptionPane.showMessageDialog(null, "La duración del recorrido en segundos es: " + tiempo);
+                    if (proceso == true) {
+                       JOptionPane.showMessageDialog(null, "La duración del recorrido en segundos es: " + tiempo); 
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Antes de mostrar el tiempo de ejecución por favor\n"
+                                + "calcule recorrido primero");
+                    }
                     break;
                 case 5:
-                    JOptionPane.showMessageDialog(null, "El recorrido es: " + tablero.getListaMovimientos());
-                    JOptionPane.showMessageDialog(null, "La matriz resuelta es: \n\n" + tablero.imprimirTablero());
+                    if (proceso == true) {
+                        JOptionPane.showMessageDialog(null, "El recorrido es: \n" + tablero.getListaMovimientos());
+                        JOptionPane.showMessageDialog(null, "La matriz resuelta es: \n\n" + tablero.imprimirTablero());
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Por favor antes de mostrar el tablero elija la opción 3");
+                    }
                     break;
                 case 6:
                     JOptionPane.showMessageDialog(null, "Hasta pronto");
@@ -83,6 +116,10 @@ public class SaltoCaballo {
                     break;
             }
         }
+        } catch (ExceptionsCaballo e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        
 
         
     }  
