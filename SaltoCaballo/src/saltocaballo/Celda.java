@@ -102,18 +102,6 @@ public class Celda {
     }
     
     /**
-     * Elimina un coordenada de un arrayList
-     * @param coordenada coordenada a eliminar
-     */
-    public void eliminarPosiblesMovimientos(Coordenada coordenada){
-        for (int i = 0; i < posiblesMovimientos.size(); i++) {
-            if (posiblesMovimientos.get(i) == coordenada) {
-                posiblesMovimientos.remove(i);
-            }
-        }
-    }
-    
-    /**
      * Elimina una coordenada por indice
      * @param index Indice a eliminar
      * @return la coordenada eliminada

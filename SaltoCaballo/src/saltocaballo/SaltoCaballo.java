@@ -125,7 +125,6 @@ public class SaltoCaballo {
                         }
                         break;
                     case 5:
-               // tablero = new Tablero(tamaño);
                         if (proceso == true) {
                             if (solucion == true) {
                                 JOptionPane.showMessageDialog(null, "El recorrido es: \n" + tablero.getListaMovimientos());

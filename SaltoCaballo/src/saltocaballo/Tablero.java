@@ -148,7 +148,7 @@ public class Tablero {
      * @param yOriginal
      * @param cordenadaBorrar 
      */
-    public void borrarEspecificoMoviento(int xOriginal, int yOriginal, Coordenada cordenadaBorrar){
+    public void borrarEspecificoMovimiento(int xOriginal, int yOriginal, Coordenada cordenadaBorrar){
         int limite= tablero[xOriginal][yOriginal].getPosiblesMovimientos().size();
         if(limite>=0){  
              for (int i = 0; i < limite ; i++) {
@@ -161,16 +161,6 @@ public class Tablero {
                 }
             }
         }   
-    }
-    
-    /**
-     * Borra los posibles movimientos de una Celda en específico
-     * @param coordendaActualizar coordenada de la Celda a borrar sus posibles movimientos
-     */
-    public void borrarMovientosPosibles(Coordenada coordendaActualizar){
-        int i=coordendaActualizar.getX();
-        int j = coordendaActualizar.getY();
-        tablero[i][j].setPosiblesMovimientos(null);
     }
     
     /**
@@ -223,94 +213,7 @@ public class Tablero {
             }
         }  
     }
-    
-    
-    /**
-     * Muestra los posibles movimientos que una Celda puede tener
-     * @param x Coordenada x de la Celda
-     * @param y Coordenada y de la Celda
-     */
-    public void posiblesMovimientosEspecifico(int x, int y){
-        ArrayList movimientos = tablero[x][y].getPosiblesMovimientos();
-        System.out.println("Posibles movimientos de "+'('+x+','+y+')'+"\n"+movimientos.toString());  
-    }
-    
-//    public void vueltaAtras(Lista listaMovimientos, Coordenada posicionInicial){
-//        if (isPrimeraVez() == true) {
-//            tablero[posicionInicial.getX()][posicionInicial.getY()].setOcupada(true);
-//            tablero[posicionInicial.getX()][posicionInicial.getY()].setPosicion(numeroMovimientos);
-//            int xInicial=posicionInicial.getX();
-//            int yInicial=posicionInicial.getY();
-//            coordenadaInicio = new Coordenada(xInicial, yInicial);
-//            numeroMovimientos += 1;
-//        }
-//        if ((tablero[coordenadaInicio.getX()][coordenadaInicio.getY()].getPosiblesMovimientos().size() <= 0) && (isPrimeraVez() == false)) {
-//            System.out.println("Se terminó el proceso");
-//            return;
-//        }else{
-//            Coordenada coordenadaNueva;
-//            int coordenadaY;
-//            int coordenadaX;
-//            boolean realizoMovimiento = true;
-//            for (int i = 0; i < tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().size(); i++) {
-//                coordenadaNueva = tablero[posicionInicial.getX()][posicionInicial.getY()].getPosiblesMovimientos().get(i);
-//                coordenadaX = coordenadaNueva.getX();
-//                coordenadaY = coordenadaNueva.getY();
-//                if (tablero[posicionInicial.getX() + coordenadaX][posicionInicial.getY() + coordenadaY].isOcupada() == false) {
-//                    System.out.println("Tablero");
-//                    Coordenada coordenadaInsertar = new Coordenada();
-//                    coordenadaInsertar.setX(coordenadaX+posicionInicial.getX());
-//                    coordenadaInsertar.setY(coordenadaY+posicionInicial.getY());
-//                    listaMovimientos.insertarFinal(coordenadaInsertar);
-//                    tablero[coordenadaInsertar.getX()][coordenadaInsertar.getY()].setOcupada(true);
-//                    tablero[coordenadaInsertar.getX()][coordenadaInsertar.getY()].setPosicion(numeroMovimientos);
-//                    numeroMovimientos += 1;
-//                    realizoMovimiento = false;
-//                    System.out.println(imprimirTablero());
-//                    vueltaAtras(listaMovimientos, coordenadaInsertar);
-//                    return;
-//                }
-//            }
-//            if (realizoMovimiento == true) {
-//                if (hayPenultimo() == true) {
-//                    
-//                    Coordenada coordenadaUltima = listaMovimientos.getUltimaCoordenada();
-//                    Coordenada coordenadaAnterior = listaMovimientos.getPenultimo();
-//                    coordenadaX = coordenadaAnterior.getX();
-//                    coordenadaY = coordenadaAnterior.getY();
-//                   
-//                    tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setPosicion(-1);
-//                    tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setOcupada(false);
-//                     borrarEspecificoMoviento(coordenadaX, coordenadaY, coordenadaUltima);
-//                    borrarMovientosPosibles(coordenadaUltima);
-//                    actualizarPosibles(coordenadaUltima);
-//                   
-//                    
-//                    //tablero[coordenadaX][coordenadaY].eliminarPosiblesMovimientos(coordenadaUltima);
-//                    
-//                    
-//                    System.out.println(tablero[coordenadaX][coordenadaY].getPosiblesMovimientos());
-//                    tablero[coordenadaX][coordenadaY].setPosicion(numeroMovimientos - 2);
-//                    numeroMovimientos += - 1;
-//                    
-//                    try {
-//                        listaMovimientos.eliminarFinal();
-//                    } catch (ExceptionsCaballo e) {
-//                        System.out.println(e);
-//                    }
-//                    System.out.println("Tablero cuando retrocede");
-//                    System.out.println(imprimirTablero());
-//                    
-//                    vueltaAtras(listaMovimientos, coordenadaAnterior);
-//                    return;
-//                }else{
-//                    System.out.println("No tiene solución");
-//                    return;
-//                }   
-//            }
-//        }
-//    }
-    
+   
     /**
      * Verifica todos los movimientos que el caballo puede hacer, si el caballo necesita volver atrás este método lo hace
      * @param posicionInicial Coordenada donde el caballo inicia
@@ -366,7 +269,7 @@ public class Tablero {
                 xUltima = coordenadaUltima.getX();
                 yUltima = coordenadaUltima.getY();
                 if(tablero[xNueva][yNueva].getPosiblesMovimientos().isEmpty()==false){
-                    borrarEspecificoMoviento(xNueva, yNueva, coordenadaUltima);
+                    borrarEspecificoMovimiento(xNueva, yNueva, coordenadaUltima);
                 }
                 actualizarPosibles(new Coordenada(xUltima, yUltima));
                 tablero[coordenadaUltima.getX()][coordenadaUltima.getY()].setPosicion(0);
@@ -380,49 +283,6 @@ public class Tablero {
             }
         }
         return true;
-    }
-
-    /**
-     * Elimina el primer movimiento de la lista de posibles movimientos
-     * @param x Coordenada x de la Celda
-     * @param y Coordenada y de la Celda
-     */
-    public void eliminarPrimerMovientoPosible(int x,int y){
-        tablero[x][y].eliminarMovimiento(0);
-    }
-    
-    /**
-     * Copia el tablero
-     * @return la copia en una matriz de celdas
-     */
-    public Celda[][] copiarTablero(){
-        Celda[][] tableroCopia = new Celda[tablero.length][tablero.length];
-        for (int i = 0; i < tablero.length; i++) {
-            for (int j = 0; j < tablero.length; j++) {
-                tableroCopia[i][j] = tablero[i][j];
-            }
-        }
-        return tableroCopia;
-    }
-    
-    /**
-     * Este método verifica si hay una penultima Celda que no está ocupada en el tablero
-     * @return true si hay una penultima Celda disponible, false de lo contrario
-     */
-    public boolean hayPenultimo(){
-        int count = 0;
-        for (int i = 0; i < tablero.length; i++) {
-            for (int j = 0; j < tablero.length; j++) {
-                if (tablero[i][j].isOcupada() == true) {
-                    count += 1;
-                }
-            }
-        }
-        if (count >= 3) {
-            return true;
-        } else {
-            return false;
-        }
     }
     
     /**
@@ -459,17 +319,7 @@ public class Tablero {
         }
         return true;
     }
-    
-    //metodo solo para pruebas se puede borrar despues
-//    public void ponerTrue(){
-//        for (int i = 0; i < tablero.length; i++) {
-//            for (int j = 0; j < tablero.length; j++) {
-//                tablero[i][j].setOcupada(true);
-//            }
-//        }
-//        //tablero[0][0].setOcupada(false);
-//    }
-//    
+   
     /**
      * Imprime el tablero
      * @return un string con un formato de matriz del tablero
