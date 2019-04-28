@@ -8,7 +8,8 @@ package saltocaballo;
 import java.util.ArrayList;
 
 /**
- *
+ * Esta clase maneja las celdas del tablero
+ * @version 27/04/2019
  * @author Kevin Trejos
  */
 public class Celda {
@@ -112,6 +113,11 @@ public class Celda {
         }
     }
     
+    /**
+     * Elimina una coordenada por indice
+     * @param index Indice a eliminar
+     * @return la coordenada eliminada
+     */
     public Coordenada eliminarMovimiento(int index){
         return posiblesMovimientos.remove(index);
     }

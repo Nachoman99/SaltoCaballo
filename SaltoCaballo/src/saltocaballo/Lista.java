@@ -6,14 +6,14 @@
 package saltocaballo;
 
 /**
- *
+ * Esta clase es una lista de nodos para manejar los movimientos que ya se han realizado en el tablero
+ * @version 27/04/2019
  * @author Kevin Trejos
  */
 public class Lista {
     private Nodo primero = null;
     private Nodo ultimo = null;
     private Nodo temporal = null;
-    private int tamaño;
     /**
      * Constructor vacío
      */
@@ -96,9 +96,7 @@ public class Lista {
         if (ultimo == null) {
             primero = nuevo;
             ultimo = primero;
-            tamaño++;
         }else{
-            tamaño++;
             nuevo.setSig(primero);
             primero.setAnt(nuevo);
             primero = nuevo;
@@ -114,9 +112,7 @@ public class Lista {
         if (ultimo == null) {
             ultimo = nuevo;
             primero = ultimo;
-            tamaño++;
         }else{
-            tamaño++;
             nuevo.setAnt(ultimo);
             ultimo.setSig(nuevo);
             ultimo = nuevo;
@@ -136,12 +132,10 @@ public class Lista {
             valorRet = primero.getDato();
             primero = null;
             ultimo = null;
-            tamaño--;
         }else{
             valorRet = primero.getDato();
             primero = primero.getSig();
             primero.setAnt(null);
-            tamaño--;
         }
         return valorRet;
     }
@@ -149,7 +143,6 @@ public class Lista {
     /**
      * Elimina el final de la lista
      * @return el elemento eliminado
-     * @throws ExceptionsCaballo Excepcion personalizada
      */
     public boolean eliminarFinal(){
         Coordenada valorRet;
@@ -159,14 +152,12 @@ public class Lista {
             valorRet = primero.getDato();
             ultimo = null;
             primero = null;
-            tamaño--;
             return true;   
         }else{
             valorRet = ultimo.getDato();
             ultimo = ultimo.getAnt();
             ultimo.getSig().setAnt(null);
             ultimo.setSig(null);
-            tamaño--;
         }
         return true;
     }
@@ -182,10 +173,9 @@ public class Lista {
             primero = null;
             ultimo = null;
             temporal = null;
-            tamaño = 0;
         }
     }
-    //Revisar método
+   
     /**
      * Elimina un dato en especifico
      * @param dato dato a eliminar
@@ -205,7 +195,6 @@ public class Lista {
             eliminarFinal();
             return valorRet;
         }else{
-            tamaño--;
             temporal = primero;
             while (temporal.getSig() != null) {                
                 if (temporal.getDato() == dato) {
@@ -220,7 +209,6 @@ public class Lista {
         }
         throw new ExceptionsCaballo("El dato no se encuentra en la lista");
     }
-    //Este método está mal
 
     /**
      * Elimina el indice especificado
@@ -238,7 +226,6 @@ public class Lista {
             eliminarInicio();
             return valorRet;
         }else{
-            tamaño--;
             temporal = primero;
             while (primero.getSig() != null) {                
                 if (count == index) {
@@ -287,17 +274,19 @@ public class Lista {
         return str;
     }
     
+    /**
+     * Obtiene el penultimo elemento de la lista
+     * @return penultimo elemento de la lista
+     */
     public Coordenada getPenultimo(){
         return ultimo.getAnt().getDato();
     }
  
+    /**
+     * Obtiene el antepenultimo elemento de la lista
+     * @return antepenultimo elemento de la lista
+     */
     public Coordenada getAntePenultimo(){
         return ultimo.getAnt().getAnt().getDato();
     }
-
-    public int getTamaño() {
-        return tamaño;
-    }
-    
-    
 }

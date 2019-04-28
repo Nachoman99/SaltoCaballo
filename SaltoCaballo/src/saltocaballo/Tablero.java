@@ -7,8 +7,6 @@ package saltocaballo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,13 +18,17 @@ public class Tablero {
     private Coordenada coordenadaInicio;
     private Lista listaMovimientos = new Lista();
 
-    
+    /**
+     * Constructor vacío
+     */
     public Tablero() {
 
     }
     
     /**
-     * Constructor
+     * Constructor que no permite que el tamaño del tablero sea menor a 5
+     * @param tamaño tamaño que el usuario ingresa
+     * @throws ExceptionsCaballo Excepcion personalizada
      */
     public Tablero(int tamaño) throws ExceptionsCaballo{
         if (tamaño < 5) {
@@ -52,14 +54,26 @@ public class Tablero {
         this.tablero = tablero;
     }
 
+    /**
+     * get
+     * @return el numero de movimientos 
+     */
     public int getNumeroMovimientos() {
         return numeroMovimientos;
     }
 
+    /**
+     * set
+     * @param numeroMovimientos el numero de movimientos 
+     */
     public void setNumeroMovimientos(int numeroMovimientos) {
         this.numeroMovimientos = numeroMovimientos;
     }
 
+    /**
+     * get
+     * @return La lista de movimientos
+     */
     public String getListaMovimientos(){
         return listaMovimientos.imprimirLista();
     }
@@ -73,9 +87,8 @@ public class Tablero {
     }
 
     /**
-     * Este método verifica los posibles movimientos que el caballo tiene
+     * Este método verifica los posibles movimientos que tiene cada celda
      */
-    //este metodo hay que llamarlo antes de todo para cargar las celdas con sus moviemientos
     public void posiblesMovimientos() {
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
@@ -128,54 +141,41 @@ public class Tablero {
         }
     }
     
-   public void borrarEspecificoMoviento(int xOriginal, int yOriginal, Coordenada cordenadaBorrar){
-//        int indiceBorrar=0;
-//        //System.out.println("lista= "+tablero[xOriginal][yOriginal].getPosiblesMovimientos());
-//        Iterator iterador = tablero[xOriginal][yOriginal].getPosiblesMovimientos().iterator();
-//        while (iterador.hasNext()) {
-//            Coordenada cordenada1 = (Coordenada)iterador.next();
-//            if((cordenada1.getX() == tablero[cordenadaBorrar.getX()][cordenadaBorrar.getY()].getPosiblesMovimientos().get(indiceBorrar))&&(cordenada1.getY() == yComparar)){
-//                tablero[xOriginal][yOriginal].getPosiblesMovimientos().remove(indiceBorrar);
-//                System.out.println("se borro la posicion maaaaaaaaaaaaalaaaa");
-//            }
-//            indiceBorrar+=1;
-//            
-//            
-//        }
-//        
-        
-        
+    /**
+     * 
+     * @param xOriginal
+     * @param yOriginal
+     * @param cordenadaBorrar 
+     */
+    public void borrarEspecificoMoviento(int xOriginal, int yOriginal, Coordenada cordenadaBorrar){
         int limite= tablero[xOriginal][yOriginal].getPosiblesMovimientos().size();
-        //System.out.println("limite= "+limite);
         if(limite>=0){  
              for (int i = 0; i < limite ; i++) {
-                 //System.out.println("Porque no sirve=" +tablero[xOriginal][yOriginal].getPosiblesMovimientos());
-                 //System.out.println("I= "+i );
-                 Coordenada cordenada1=tablero[xOriginal][yOriginal].getPosiblesMovimientos().get(i);
-                 //System.out.println("Xanterior= "+xOriginal+" Yanterior= "+yOriginal);
-                 //System.out.println("Xmovimiento= "+cordenada1.getX()+" Ymovimiento= "+cordenada1.getY());
-                 if(((xOriginal+cordenada1.getX()) == cordenadaBorrar.getX())&&((yOriginal+cordenada1.getY()) == cordenadaBorrar.getY())){
-                     tablero[xOriginal][yOriginal].getPosiblesMovimientos().remove(i);
-                     //System.out.println("se borro la posicion maaaaaaaaaaaaalaaaa");
-                     limite--;
+                Coordenada cordenada1=tablero[xOriginal][yOriginal].getPosiblesMovimientos().get(i);
+                if(((xOriginal+cordenada1.getX()) == cordenadaBorrar.getX())&&((yOriginal+cordenada1.getY()) == cordenadaBorrar.getY())){
+                   tablero[xOriginal][yOriginal].getPosiblesMovimientos().remove(i);
+                   limite--;
                      
 
-                 }
-             }
- 
-        }
-                
+                }
+            }
+        }   
     }
-
-
     
-    
+    /**
+     * Borra los posibles movimientos de una Celda en específico
+     * @param coordendaActualizar coordenada de la Celda a borrar sus posibles movimientos
+     */
     public void borrarMovientosPosibles(Coordenada coordendaActualizar){
         int i=coordendaActualizar.getX();
         int j = coordendaActualizar.getY();
         tablero[i][j].setPosiblesMovimientos(null);
     }
     
+    /**
+     * Este método actualiza los posibles movimientos de una Celda en específico
+     * @param coordendaActualizar Coordenada de la Celda a actualizar
+     */
     public void actualizarPosibles(Coordenada coordendaActualizar){
         int i=coordendaActualizar.getX();
         int j = coordendaActualizar.getY();
@@ -225,9 +225,9 @@ public class Tablero {
     
     
     /**
-     * 
-     * @param x
-     * @param y
+     * Muestra los posibles movimientos que una Celda puede tener
+     * @param x Coordenada x de la Celda
+     * @param y Coordenada y de la Celda
      */
     public void posiblesMovimientosEspecifico(int x, int y){
         ArrayList movimientos = tablero[x][y].getPosiblesMovimientos();
@@ -310,8 +310,12 @@ public class Tablero {
 //        }
 //    }
     
-    
- public boolean vueltaAtras(Coordenada posicionInicial) throws ExceptionsCaballo{
+    /**
+     * Verifica todos los movimientos que el caballo puede hacer, si el caballo necesita volver atrás este método lo hace
+     * @param posicionInicial Coordenada donde el caballo inicia
+     * @return si encontró solución retorna true, de lo contrario retorna false
+     */
+    public boolean vueltaAtras(Coordenada posicionInicial){
         Coordenada coordenadaNueva;
         Coordenada coordenadaInsertar = new Coordenada();
         int coordenadaX=0;
@@ -377,13 +381,19 @@ public class Tablero {
         return true;
     }
 
-
-
-    
+    /**
+     * Elimina el primer movimiento de la lista de posibles movimientos
+     * @param x Coordenada x de la Celda
+     * @param y Coordenada y de la Celda
+     */
     public void eliminarPrimerMovientoPosible(int x,int y){
         tablero[x][y].eliminarMovimiento(0);
     }
     
+    /**
+     * Copia el tablero
+     * @return la copia del tablero
+     */
     public Celda[][] copiarTablero(){
         Celda[][] tableroCopia = new Celda[tablero.length][tablero.length];
         for (int i = 0; i < tablero.length; i++) {
@@ -394,6 +404,10 @@ public class Tablero {
         return tableroCopia;
     }
     
+    /**
+     * Este método verifica si hay una penultima Celda que no está ocupada en el tablero
+     * @return true si hay una penultima Celda disponible, false de lo contrario
+     */
     public boolean hayPenultimo(){
         int count = 0;
         for (int i = 0; i < tablero.length; i++) {
@@ -410,6 +424,10 @@ public class Tablero {
         }
     }
     
+    /**
+     * Verifica si es la primera vez que se usa el método vueltaAtrás
+     * @return true si es la primera vez, false de lo contrario
+     */
     public boolean isPrimeraVez(){
         int count = 0;
         for (int i = 0; i < tablero.length; i++) {
@@ -426,6 +444,10 @@ public class Tablero {
         }
     }
     
+    /**
+     * Verifica si el tablero ya está totalmente ocupado 
+     * @return true si todas las Celdas están ocupadas, false de lo contrario
+     */
     public boolean tableroListo(){
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
@@ -446,6 +468,10 @@ public class Tablero {
         //tablero[0][0].setOcupada(false);
     }
     
+    /**
+     * Imprime el tablero
+     * @return el tablero 
+     */
     public String imprimirTablero(){
         String print = "";
         for (int i = 0; i < tablero.length; i++) {
@@ -457,6 +483,11 @@ public class Tablero {
         return print;
     }
     
+    /**
+     * Verifica si el String que le ingresa se puede convertir a int
+     * @param cadena String a convertir
+     * @return true si el String ingresado es un número, sino retorna false
+     */
     public boolean isNumero(String cadena){
         try {
             Integer.parseInt(cadena);
@@ -466,7 +497,15 @@ public class Tablero {
         }
     }
     
-    public Coordenada pedirCoordenada(String x, String y, int tamaño) throws ExceptionsCaballo{
+    /**
+     * Este método verifica si las Coordenadas que el usuario quiere ingresar son válidas
+     * @param x posición x de la Coordenada
+     * @param y posición y de la Coordenada
+     * @param tamaño tamaño del tablero
+     * @return la Coordenada si los String ingresados son números
+     * @throws ExceptionsCaballo Excepciones personalizadas
+     */
+    public Coordenada CoordenadasInt(String x, String y, int tamaño) throws ExceptionsCaballo{
         Coordenada coordenadaInicial;
         int coordenadaX;
         int coordenadaY;

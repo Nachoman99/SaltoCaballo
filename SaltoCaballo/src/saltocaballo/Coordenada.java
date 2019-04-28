@@ -6,7 +6,8 @@
 package saltocaballo;
 
 /**
- *
+ * Esta clase se encarga de las coordenadas que va a tener cada celda
+ * @version 27/04/2019
  * @author Kevin Trejos
  */
 public class Coordenada {

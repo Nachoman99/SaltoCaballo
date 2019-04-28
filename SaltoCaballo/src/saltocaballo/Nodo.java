@@ -6,7 +6,8 @@
 package saltocaballo;
 
 /**
- *
+ * Esta clase se encarga de manejar los Nodos de la Lista
+ * @version 27/04/2019
  * @author Kevin Trejos
  */
 public class Nodo {
@@ -35,7 +36,7 @@ public class Nodo {
     }
 
     /**
-     * set
+     * Set
      * @param dato Coordenada
      */
     public void setDato(Coordenada dato) {

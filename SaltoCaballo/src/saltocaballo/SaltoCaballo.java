@@ -92,7 +92,7 @@ public class SaltoCaballo {
                             String str = JOptionPane.showInputDialog("Digite la coordenada X a iniciar");
                             String str2 = JOptionPane.showInputDialog("Digite la coordenada Y a iniciar");
                             try {
-                                coordenadaInicial = tablero.pedirCoordenada(str, str2, tamaño);
+                                coordenadaInicial = tablero.CoordenadasInt(str, str2, tamaño);
                                 coordenadas = true;
                                 tablero = new Tablero(tamaño);
                             } catch (ExceptionsCaballo e) {

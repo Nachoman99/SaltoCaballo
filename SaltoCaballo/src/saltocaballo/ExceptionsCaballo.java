@@ -6,7 +6,8 @@
 package saltocaballo;
 
 /**
- *
+ * Esta clase se encarga del manejo de las excepciones
+ * @version 27/04/2019
  * @author Kevin Trejos
  */
 public class ExceptionsCaballo extends Exception{
