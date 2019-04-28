@@ -144,9 +144,9 @@ public class Tablero {
     
     /**
      * Metodo para borrar el movimiento de la penultima celda a la ultima
-     * @param xOriginal
-     * @param yOriginal
-     * @param cordenadaBorrar 
+     * @param xOriginal Coordenada x original 
+     * @param yOriginal Coordenada y original
+     * @param cordenadaBorrar Coordenada a borrar
      */
     public void borrarEspecificoMovimiento(int xOriginal, int yOriginal, Coordenada cordenadaBorrar){
         int limite= tablero[xOriginal][yOriginal].getPosiblesMovimientos().size();

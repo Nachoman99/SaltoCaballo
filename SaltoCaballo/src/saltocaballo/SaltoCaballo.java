@@ -5,9 +5,7 @@
  */
 package saltocaballo;
 
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.showInputDialog;
 
 /**
  * Esta es la clase main donde se crea un menu para que el usuario utilize diferentes metodos de otras clases
@@ -19,7 +17,7 @@ public class SaltoCaballo {
     /**
      * Main
      */
-    public static void main(String[] args) throws ExceptionsCaballo {
+    public static void main(String[] args) {
 
         int salirX;
         int tamaño = 0;
