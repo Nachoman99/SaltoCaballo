@@ -63,6 +63,7 @@ public class SaltoCaballo {
                 switch(opcion){
                     case 1:
                         continuar = false;
+                        coordenadas = false;
                         tamañoString = JOptionPane.showInputDialog("Digite el tamaño de la matriz");
                         if (tamañoString != null) {
                             tamaño = Integer.parseInt(tamañoString);
