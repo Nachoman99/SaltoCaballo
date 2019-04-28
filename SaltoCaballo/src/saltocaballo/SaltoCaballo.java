@@ -10,8 +10,9 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showInputDialog;
 
 /**
- *
- * @author Nacho
+ * Esta es la clase main donde se crea un menu para que el usuario utilize diferentes metodos de otras clases
+ * @version 27/04/2019
+ * @author Jose Ignacio
  */
 public class SaltoCaballo {
 
@@ -36,13 +37,6 @@ public class SaltoCaballo {
         Coordenada coordenadaInicial = new Coordenada();
         boolean solucion = true;
         
-        
-        
-        /*
-        Actuales problemas:
-        1. Al usar las excepciones entonces se sale del programa, no continúa.
-        6. Si le doy enter a la primer ventana del menú sin meter ningún valor tira error
-        */
         while (salir == false) {
             String opcionString = JOptionPane.showInputDialog("Por favor elija una de las siguientes opciones: \n"
                 + "1) Insertar tamaño de la matriz \n"

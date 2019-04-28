@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- *
+ * Clase encargada de hacer la matriz de celdas y metodos necesarios para realizar procesos del salto del caballo
+ * @version 27/04/2019
  * @author Kevin Trejos
  */
 public class Tablero {
@@ -87,7 +88,7 @@ public class Tablero {
     }
 
     /**
-     * Este método verifica los posibles movimientos que tiene cada celda
+     * Este método verifica los posibles movimientos que tiene cada celda 
      */
     public void posiblesMovimientos() {
         for (int i = 0; i < tablero.length; i++) {
@@ -142,7 +143,7 @@ public class Tablero {
     }
     
     /**
-     * 
+     * Metodo para borrar el movimiento de la penultima celda a la ultima
      * @param xOriginal
      * @param yOriginal
      * @param cordenadaBorrar 
@@ -392,7 +393,7 @@ public class Tablero {
     
     /**
      * Copia el tablero
-     * @return la copia del tablero
+     * @return la copia en una matriz de celdas
      */
     public Celda[][] copiarTablero(){
         Celda[][] tableroCopia = new Celda[tablero.length][tablero.length];
@@ -458,19 +459,20 @@ public class Tablero {
         }
         return true;
     }
-    //metodo solo para pruebas se puede borrar despues
-    public void ponerTrue(){
-        for (int i = 0; i < tablero.length; i++) {
-            for (int j = 0; j < tablero.length; j++) {
-                tablero[i][j].setOcupada(true);
-            }
-        }
-        //tablero[0][0].setOcupada(false);
-    }
     
+    //metodo solo para pruebas se puede borrar despues
+//    public void ponerTrue(){
+//        for (int i = 0; i < tablero.length; i++) {
+//            for (int j = 0; j < tablero.length; j++) {
+//                tablero[i][j].setOcupada(true);
+//            }
+//        }
+//        //tablero[0][0].setOcupada(false);
+//    }
+//    
     /**
      * Imprime el tablero
-     * @return el tablero 
+     * @return un string con un formato de matriz del tablero
      */
     public String imprimirTablero(){
         String print = "";
